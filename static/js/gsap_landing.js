@@ -278,9 +278,9 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             scale: 0.2,
             ease: "linear",
-            duration: 1.5,
+            duration: 1,
         })
-        //6.5
+        //6
         .to(".plasmid_container", {
             motionPath: {
                 path: plasmidPath7,
@@ -289,9 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             scale: 0.2,
             ease: "linear",
-            duration: 1.5,
+            duration: 1,
         })
-        //8
+        //7
         .to(".plasmid_container", {
             motionPath: {
                 path: plasmidPath8,
@@ -300,10 +300,11 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             scale: 0.2,
             ease: "linear",
-            duration: 1.5,
+            duration: 1,
         })
     })
-        //9.5     // ------------------- SVG functions ----------------------
+        //8
+     // ------------------- SVG functions ----------------------
     
         /* 1. getRawPathData
         2. getRawPathDataset
@@ -512,10 +513,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         scale: 0.25,
         ease: "linear",
-        duration: 1.5,
+        duration: 1,
     },5)
 
-    //6.5
+    //6
     .to(".svg-container", {
         motionPath: {
             path: liposomePath6,
@@ -524,10 +525,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         scale: 0.25,
         ease: "linear",
-        duration: 1.5,
-    },6.5)
+        duration: 1,
+    },6)
 
-    //8
+    //7
     .to(".svg-container", {
         motionPath: {
             path: liposomePath7,
@@ -536,90 +537,100 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         scale: 0.25,
         ease: "linear",
-        duration: 1.5,
-    },8)
+        duration: 1,
+    },7)
 
-    //9.5 svg-container and plasmid stick together at lung4(plasmid_container) and lung5(svg_container)
+    //8 svg-container and plasmid stick together at lung4(plasmid_container) and lung5(svg_container)
     tl_plasmid.to(lung4, {
         x: 0,
         y: 0,
-        duration: 1,
+        duration: 1.5,
         onUpdate: () => {
         sync_move(plasmid_container, lung4, [0.5, 0.5]);
         }
-    },9.5)
+    },8)
 
     //scale up
     tl_plasmid.to(plasmid_container, {
         scale: 0.2 * scale_factor,
-        duration: 1,
-    },9.5)
+        duration: 1.5,
+    },8)
 
     tl_plasmid.to(lung5, {
         x: 0,
         y: 0,
-        duration: 1,
+        duration: 1.5,
         onUpdate: () => {
         sync_move(svg_container, lung5, [0.5, 0], 3, 15);
         }
-    },9.5)
+    },8)
 
     //scale up
     tl_plasmid.to(svg_container, {
         scale: 0.27 * scale_factor,
         duration: 1,
-    },9.5)
+    },8)
 
-    //9 svg-container and plasmid dragged by lung4 and lung5
+    //9.5 svg-container and plasmid dragged by lung4 and lung5
     tl_plasmid.to(lung4, {
         x: 0,
-        y: 40,
-        duration: 1,
+        y: 26,
+        duration: 0.5,
         onUpdate: () => {
         sync_move(plasmid_container, lung4, [0.5, 0.5]);
         }
-    },10.5)
+    },9.5)
 
     tl_plasmid.to(lung5, {
         x: 0,
-        y: 40.5,
-        duration: 1,
+        y: 26,
+        duration: 0.5,
         onUpdate: () => {
         sync_move(svg_container, lung5, [0.5, 0], 3, 15);
         }
-    },10.5)
+    },9.5)
 
-    //10 reverse encapsulation
+    //10.5 reverse encapsulation
+    tl_plasmid.to(lung5, {
+        x: 0,
+        y: 40,
+        duration: 1.5,
+        onUpdate: () => {
+        sync_move(svg_container, lung5, [0.5, 0], 3, 15);
+        }
+    },10)
+  
+    
     tl_plasmid.to(".path1",{
         attr: { d: pathOrigin },
-        duration: 1,
+        duration: 1.5,
         //ease: "power4.in",
         onUpdate: () => {
         sync_move(svg_container, lung5, [0.5, 0], 3, 15);
         }
-    },10.88)
+    },10)
 
     tl_plasmid.to(lung4, {
         x: 0,
         y: 80,
-        duration: 1,
+        duration: 1.5,
         //ease: "power4.in",
         onUpdate: () => {
         sync_move(plasmid_container, lung4, [0.5, 0.5]);
         }
-    },10.88)
+    },10)
 
     //vanish
     tl_plasmid.to(svg_container, {
         opacity: 0,
         duration: 0.1,
-    },12.25)
-
+    },11.5)
+      
     //11 final sync to make it stick in center of bacterium
     tl_plasmid.to(lung4, {
         x: 0,
         y: 80,
-        duration: 3,
+        duration: 2,
         onUpdate: () => {
         sync_move(plasmid_container, lung4, [0.5, 0.5]);
         }
@@ -634,15 +645,15 @@ document.addEventListener('DOMContentLoaded', function() {
     //amps fading in
     tl_plasmid.to(".amp", {
         opacity: 1,
-        duration: 1,
-    }, 12)
+        duration: 1.5,
+    }, 11)
 
     //final shrink plasmid --> same time as lung
     //scale up
     tl_plasmid.to(plasmid_container, {
         scale: 0.2,
-        duration: 1,
-    },14.5)
+        duration: 1.5,
+    },13)
     
 })
     
@@ -659,8 +670,8 @@ document.addEventListener('DOMContentLoaded', function() {
         transformOrigin: zoom_origin,
         scale: 1 * scale_factor, // Ending value
         ease: "none",
-        duration: 1
-    }, 9.5);
+        duration: 1.5,
+    }, 8);
 
     tl_plasmid.to(".lung-container", {
         motionPath: {
@@ -671,8 +682,8 @@ document.addEventListener('DOMContentLoaded', function() {
         transformOrigin: zoom_origin,
         scale: 1, // Ending value
         ease: "none",
-        duration: 1
-    }, 14.5);
+        duration: 1.5
+    }, 13);
     
 })
         // ------------------ Position elements on SVG ------------------------
@@ -789,8 +800,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const rotation = -1*rotationDegrees[index]; // Cycle through degrees if more elements than degrees
             tl_plasmid.to(element, {
                 rotation: 0, // Reverse the rotation
-                duration: 0.5 // Duration of 0.22 seconds for each rotation
-            }, 10.88);
+                duration: 1.5 // Duration of 0.22 seconds for each rotation
+            }, 10);
         }
 
         for (let index = halfLength; index < bilipidElements.length; index++) {
@@ -798,8 +809,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const rotation = -rotationDegrees[index]; // Cycle through degrees if more elements than degrees
             tl_plasmid.to(element, {
                 rotation: 0, // Reverse the rotation
-                duration: 0.5 // Duration of 0.22 seconds for each rotation
-            }, 10.88);
+                duration: 1.5 // Duration of 0.22 seconds for each rotation
+            }, 10);
         }
     })
 
@@ -814,7 +825,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const staggerDelay = 0
         const half_elements = bacterium_bilipids.length / 2
         const lipids_that_need_to_move = 10
-
+        
         // Distribute elements along the path with auto-rotation and centered alignment
         bacterium_bilipids.forEach((element, index) => {
         tl_plasmid.to(element, {
@@ -863,10 +874,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 start: index / bacterium_bilipids.length, // Distributes elements along the path
                 end: (index + lipids_that_need_to_move)/ (bacterium_bilipids.length + lipids_that_need_to_move*2) // Adjusts end point
             },
-            duration: 0.8, // Adjust the duration as needed
+            duration: 1.3, // Adjust the duration as needed
             ease: "sine .out", // Linear motion
             delay: delay,
-            }, 10.88); 
+            }, 10); 
         }
         // Reverse staggered movement for the second animation
         for (let index = bacterium_bilipids.length; index > half_elements; index--) {
@@ -882,22 +893,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 start: index / bacterium_bilipids.length, // Distributes elements along the path
                 end: (index + lipids_that_need_to_move)/ (bacterium_bilipids.length + lipids_that_need_to_move*2) // Adjusts end point
             },
-            duration: 0.8, // Adjust the duration as needed
+            duration: 1.3, // Adjust the duration as needed
             ease: "sine.out", // Linear motion
             delay: delay,
-            }, 10.88); 
+            }, 10); 
         }
    
       
       tl_plasmid.to(bacterium_bilipids, {
         opacity: 0,
         duration: 0.1,
-      }, 12.25)
+      }, 11.5)
       
       tl_plasmid.to(bacterium_bilipids2, {
         opacity: 1,
         duration: 0.1,
-      }, 12.25)
+      }, 11.5)
       
        //GSDevTools.create({ animation: tl_plasmid });
 
