@@ -1,0 +1,43 @@
+<nav class="ph3 ph4-ns" role="navigation" style="background-color:#352cb1 ">
+  <div class="nav-container items-center justify-between center ma0">
+    <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib flex items-center">
+      {{ with .Site.Params.site_logo }}
+        <div class="pv1 ma0">
+          <img src="{{ . | relURL}}" alt="{{ $.Site.Title }}" class="logo"/>
+        </div>
+      {{ else }}
+        {{ $.Site.Title }}
+      {{ end }}
+      <span class="iGEMblue pl3 ns-db teamname">iGEM Freiburg 2024</span>
+      <span class="teamname capture iGEMblue">&nbsp;| CAPTURE</span>
+    </a>
+    <button id="menu-button" class="hamburger-icon white f2" onclick="toggleMenu()">☰</button> 
+    <div class="ma0 nav-menu"> 
+      {{ if .Site.Menus.main }}
+        <ul class="ma0 tc f3">
+          {{ range sort .Site.Menus.main "Weight" }}
+            {{ if .URL }}
+              <li class="list nav-items f5 fw4 dib w-100 pl3">
+                <a href="{{ .URL }}" class="no-underline white nowrap pl2">{{ .Name }}</a>
+              </li>
+            {{ else if .HasChildren }}
+              <li class="list children f5 fw4 dib w-100 ma0 pl3">
+                <div class="dropdown ma0 relative dib">
+                  <button class="dropbtn ma0 pa2 flex nowrap" onclick="toggleDropdown(event)">
+                    {{ .Name }}
+                    <img src="https://static.igem.wiki/teams/5057/dropdown.svg" class="pl2 drop-triangle">
+                  </button>
+                  <div class="dropdown-content ma0 dn absolute z-1">
+                    {{ range sort .Children "Weight" }}
+                      <a class="black pa2 no-underline db" href="{{ .URL }}">{{ .Name }}</a>
+                    {{ end }}
+                  </div>
+                </div>
+              </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,24 @@
+<!-- layouts/partials/sidebar.html -->
+<div id="sidebar-placeholder">
+  <aside id="sidebar">
+    <ul class="sidebar_ul">
+      {{ range .Page.Params.toc }}
+      <li class="{{ if .subpoints }}has-subpoints{{ end }}">
+        <a href="#{{ .id }}">
+          {{ .text }}
+          {{ if .subpoints }}
+            <span class="dropdown-arrow" style="color: black;">&#9660;</span>
+          {{ end }}
+        </a>
+          {{ if .subpoints }}
+            <ul class="subpoints">
+              {{ range .subpoints }}
+                <li class="subpoint-item"><a href="#{{ .id }}">{{ .text }}</a></li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </aside>
+</div>

@@ -1,0 +1,133 @@
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    max-width: 60%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
+/* should change this if i dont want to be killed by isa */
+div {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* objects */
+#liposome{
+    max-width: 80%;
+    min-width: 30%;
+}
+
+#plasmid{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+/* special container */
+.special{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.startpoint {
+    position: relative;
+}
+
+.plasmid_container{
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    z-index: 100;
+    scale: 1;
+}
+
+.drop_container{
+    position: absolute;
+    width: 7em;
+    height: auto;
+    opacity: 0;
+}
+
+#lipid-container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 1em;
+    width: 100%;
+    /* background-color: aquamarine; */
+}
+
+.bilipid{
+    position: absolute;
+    z-index: 1010;
+    width: 10px;
+    height: 20px;
+}
+
+.bilipid img {
+    width: 10px;
+    height: 20px;
+}
+
+.svg-container {
+    position: absolute;
+/*     background-color: beige;
+ */    height: 1em;
+}
+
+.svg-1 {
+    height: 1em;
+    stroke-width: 5;
+    fill: none;
+    /* background-color: antiquewhite; */
+    overflow: visible;
+}
+
+.path1 {
+    /* stroke: rgb(69, 241, 155); */
+    z-index: 1000;
+    visibility: visible;
+    position: absolute;
+    stroke-width: 1;
+/*     stroke: blue;
+ */}
+
+/* Path elements */
+.horizontal_path {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+/*     background-color: lawngreen;
+ */    width: 100%;	
+    height: 10%;
+    margin: 0;
+}
+
+.vertical_path {
+    display: flex;
+/*     background-color: rgb(212, 255, 168);
+ */    max-width: 50%;
+    min-width: 20%;	
+    max-height: 100%;
+    margin: 0;
+}
+
+.anchor {
+    background-color: rgb(255, 0, 0);
+    width: 1px;	
+    height: 1px;
+    margin: 10rem;
+}

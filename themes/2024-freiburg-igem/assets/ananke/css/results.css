@@ -1,0 +1,40 @@
+.rh1 {
+    font-size:clamp(1.5rem, 2vw, 3rem);;
+    color:black;
+    background-color:#06d7fc;
+    border-radius: 10px;
+    padding: 10px;
+
+  }
+  
+  .rh2 {
+    font-size:clamp(1.25rem, 1.75vw, 3rem);
+    color:black;
+    border: #f51889 dotted 3px;
+    background-color: #f5188a44;
+    border-radius: 10px;
+    padding-top: 2px;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    margin: 0;
+  }
+
+  .key-finding li {
+    list-style: none; /* Remove default list style */
+    position: relative; /* Position relative for pseudo-element */
+    font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+  
+  /* image for bullet points for key findings */
+  .key-finding li::before {
+    content: '';
+    display: inline-block;
+    width: 5vw; /* Adjust width as needed */
+    height: 5vw; /* Adjust height as needed */
+    background-image: url('https://static.igem.wiki/teams/5057/key-finding.svg');
+    background-size: contain; /* Ensure the image fits within the element */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    vertical-align: middle; /* Align with text */
+  }

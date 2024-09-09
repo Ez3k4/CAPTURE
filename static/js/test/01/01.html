@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="01.css">
+</head>
+<body>
+    <div class="main scrollsource w-75">
+        <div class="container special">
+            <h2 class="f1">Antibiotic Resistance</h2>
+            <p class="f3">When comparing the leading causes of death with the number of annual deaths caused by antimicrobial resistance you will find numbers around 0.7 M in the literature. <br>
+            And that's without counting the cases that are indirectly linked to AMR or were simply filed under a different cause of death. <br>
+            But estimates predict that by the year 2050, this number will have risen to about the same magnitude as the number of annual deaths caused by cancer. <br>
+            This means that antimicrobial resistance already is a significant issue and will become an even bigger concern in the near future!</p>
+            <img src="https://static.igem.wiki/teams/5057/abr-death-statistic.png" alt="intermediate death stat picture">
+            <p class="f3"></p>
+        </div>    
+        <div class="container" style="flex-direction: column;">
+            <h2 class="f1">AMP - the alternative to Antibiotics</h2>
+            <div class="container" style="flex-direction: row;">
+                <div class="ma2">
+                    <p class="f3">But what exactly are AMPs? <br>
+                        Antimicrobial peptides or AMPs are short cationic peptides with a length of around 50 amino acids. <br>
+                        They're produced by the innate immune system of many organisms and combat bacteria through various mechanisms. <br>
+                        Now let's take a look how the AMP could be safely delivered and produced inside antibiotic resistent bacteria like <em>Pseudomonas aeruginosa</em></p>
+                </div>
+                    <div style="min-width: 40%;">
+                        <img src="https://static.igem.wiki/teams/5057/amp-mechanincs.png" alt="amp mechanics">
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            <div class="vertical_path startpoint ma2">
+                <div class="plasmid_container"><img id="plasmid" src="https://static.igem.wiki/teams/5057/plasmid-pel-sushi-t-kanr-ori.svg" alt="plasmid"></div>
+            </div>
+            <div class="ma2">
+                <h2 class="f1">The Plasmid</h2>
+                <p class="f3">For biosafety reasons, we've incorporated a constitutive Pseudomonas-specific promoter called pel into the plasmid.<br>
+                This design guarantees that even if the plasmid is taken up by a lung epithelial cell, the AMPs wont be expressed.</p>
+            </div>
+        </div>
+
+        <div class="horizontal_path ma2">
+            <div class="anchor"></div>
+        </div>
+        
+        <div class="container">
+            <div class="ma2">
+                <h2 class="f1">Delivery System</h2>
+                <p class="f3">We developed two different delivery system where the Plasmid gets encapsulated by lipids to transport it into the bacteria. <br>
+                These transport vesicles only target specified bacteria strains like <em>Pseudomonas aeruginosa</em>. </p>
+            </div>
+            <div class="vertical_path ma2" style="min-width: 40%;">
+                <div id="lipid-container">
+                    <div class="anchor" style="position: absolute;"></div>
+                    <div class="svg-container" id="svg-1">
+                        <svg class="svg-1">
+                            <path class="path1" d="M314.000000,0.000000C295.643863,-0.000000 257.758409,0.000000 231.258707,0.000000 C202.861771,0.000000 177.925958,0.000000 150.336719,0.000000 C122.747481,0.000000 107.648515,0.000000 85.747610,0.000000 C58.158371,0.000000 80.179584,0.000000 0.000000,0.000000 M314.000000,0.000000C295.643863,-0.000000 257.758409,0.000000 231.258707,0.000000 C202.861771,0.000000 177.925958,0.000000 150.336719,0.000000 C122.747481,0.000000 107.648515,0.000000 85.747610,0.000000 C58.158371,0.000000 80.179584,0.000000 0.000000,0.000000 " data-path-to="M157.000000,0.000000C184.589239,0.000000 207.000000,22.410761 207.000000,50.000000 C207.000000,77.589239 184.589239,100.000000 157.000000,100.000000 C129.410761,100.000000 107.000000,77.589239 107.000000,50.000000 C107.000000,22.410761 129.410761,0.000000 157.000000,0.000000 M157.000000,0.000000C184.589239,0.000000 207.000000,22.410761 207.000000,50.000000 C207.000000,77.589239 184.589239,100.000000 157.000000,100.000000 C129.410761,100.000000 107.000000,77.589239 107.000000,50.000000 C107.000000,22.410761 129.410761,0.000000 157.000000,0.000000"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="horizontal_path ma2">
+            <div class="anchor"></div>
+        </div>
+
+        <div class="container">
+            <div class="vertical_path ma2">
+                <div class="anchor"></div>
+            </div>
+            <div class="ma2">
+                <h2 class="f1"><em>Pseudomonas aeruginosa</em></h2>
+                <p class="f3">Pseudomonas aeruginosa is recognized by the WHO as a high priority pathogen, with urgent need for new therapeutics due to its extremely effective mechanisms for antibiotic resistance and the complex and life threatnig host responses it triggers. </p>
+            </div>
+        </div>       
+        
+        <div class="vertical_path ma2">
+            <div class="drop_container"><img id="drop" src="https://static.igem.wiki/teams/5057/drop.svg" alt="drop"></div>
+            <div class="anchor"> </div>
+        </div>
+
+        <!-- Load GSAP from CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+        <script src="01.js"></script>
+    </div>
+</body>
+</html>

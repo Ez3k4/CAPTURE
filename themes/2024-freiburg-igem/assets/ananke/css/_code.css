@@ -1,0 +1,106 @@
+pre, .pre  {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow:   scroll;
+}
+
+
+pre  code {
+  display: block;
+  padding: 1.5em 1.5em;
+  white-space: pre;
+  font-size: .875rem;
+  line-height: 2;
+
+}
+
+pre {
+  background-color: #222;
+  color: #ddd;
+  white-space: pre;
+
+  hyphens: none;
+  position: relative;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Pathway Gothic One';
+  src: url('https://static.igem.wiki/teams/5057/fonts/pathwaygothicone-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('https://static.igem.wiki/teams/5057/fonts/roboto-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tilda';
+  src: url('https://static.igem.wiki/teams/5057/fonts/tildasans-vf.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  font-family: 'Tilda', sans-serif;
+}
+p{
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+h2{
+  font-size: clamp(1rem, 2vw, 3rem);
+  color:black;
+  background-color:#fbd604;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.text-shadow {
+  text-shadow: 0px 0px 10px rgba(27, 23, 27, 0.726);
+}
+
+.small-gap-left-right {
+  width: 90%; /* Set the width to 90% */
+  margin: 0 auto; /* Center the container */
+}
+
+
+.partcollection{
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+th, td {
+  border:#06d7fc 2px solid;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #06d7fc62;
+}
+
+tbody tr:hover {
+  background-color: #fff;
+}
+th:first-child, td:first-child {
+  border-left: none;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+}
+
+

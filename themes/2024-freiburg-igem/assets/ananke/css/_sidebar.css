@@ -1,0 +1,101 @@
+/* CSS */
+:root {
+    --header-height: 0px; /* Default value */
+    --banner-hero-bottom: 0px; /* Default value */
+    --sidebar-width: 0px;
+}
+
+#sidebar {
+    position: sticky;
+    top: 700px; /* Use the custom property */
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    color: black;
+    cursor: pointer;
+    font-size: large;
+    line-height: 2;
+    a:visited{
+        color: black;
+    }
+    a:hover{
+        font-weight: bold;
+    }
+    a{
+        text-decoration: none;
+    }
+    ul{
+        list-style-type: none
+    }
+}
+
+#sidebar-placeholder {
+    min-width: 5vw;
+    position: sticky;
+    top: 10vh;
+}
+
+.sidebar_ul {
+    margin-left: -20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Active state for subchapters */
+#sidebar ul li a.active {
+    background-color:#FBD604;
+    color: black; 
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+/* if subpoints exist */
+#sidebar .dropdown-arrow {
+    cursor: pointer;
+    margin-left: 5px;
+  }
+
+  #sidebar .subpoints {
+    margin-left: -20px;
+  }
+  
+  #sidebar .subpoints.show {
+    display: block;
+  }
+
+.subpoints {
+    display: none;
+}
+
+.subpoints.visible {
+    display: block;
+}
+
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: min(150px) 1fr; /* Sidebar min width 200px, max width 300px, and main content takes the remaining space */
+    gap: 20px; /* Gap between the columns */
+    width: 80rem;
+    justify-content: center; /* Center the grid horizontally */
+  }
+
+.content-grid .main-content {
+    justify-self: center; /* Center items in the sidebar column */
+}
+
+@media (max-width: 1100px) {
+    .content-grid {
+        grid-template-columns: 1fr; /* Only one column (main content) */
+    }
+
+    .content-grid .sidebar {
+        display: none; /* Hide the sidebar */
+    }
+}

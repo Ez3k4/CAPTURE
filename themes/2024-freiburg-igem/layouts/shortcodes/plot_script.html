@@ -1,0 +1,109 @@
+
+<div class="container flex-row">
+    <div class="ma2">
+        <h1>Bar Plots</h1>
+        <p class="f3">To make bar plots have your excel file in this format.</p>
+        <div class="flex flex-row justify-center items-center">
+            <div style="max-width: 50%;">
+                <img src="https://static.igem.wiki/teams/5057/bar-plot-excel-2.png" alt="bar plot excel">
+            </div>
+            <div style="max-width: 50%;">
+                <img src="https://static.igem.wiki/teams/5057/bar-plot.png" alt="bar plot">
+            </div>
+        </div>
+    </div>
+
+    <div class="ma2">
+        <h1>All other Plots</h1>
+        <p class="f3">To make all other plots have your excel file in this format.</p>
+        <div class="flex flex-row justify-center items-center">
+            <div style="max-width: 50%;">
+                <img src="https://static.igem.wiki/teams/5057/plot-instruction.png" alt="line plot excel">
+            </div>
+            <div style="max-width: 50%;">
+                <img src="https://static.igem.wiki/teams/5057/line-plot-2.png" alt="line plot">
+            </div>
+        </div>
+    </div>
+
+        <div class="ma2">
+        </div>
+    </div>
+
+    <div class="ma2">
+        <h1>Add error Bars</h1>
+        <p class="f3">Your error values should have the same format like your data</p>
+        <div class="flex flex-row justify-center items-center">
+            <div style="max-width: 50%;">
+                <p>For line plots</p>
+                <img src="https://static.igem.wiki/teams/5057/lineplot-error.png" alt="line plot error">
+            </div>
+            <div style="max-width: 50%;">
+                <p>For bar plots</p>
+                <img src="https://static.igem.wiki/teams/5057/barplot-error.png" alt="bar plot error">
+            </div>
+        </div>
+    </div>
+
+<div class="ma2 flex-row">
+    <!-- Input box for excel data (x and y values) -->
+    <label class="f6 b db mb1 mt3 sans-serif mid-gray" for="line_plot_input">Enter your DATA below</label>
+    <textarea id="data_input" class="ba bw1 br3 mb1 w-60 f5 pv3 ph3 bg-light-pink" required="" placeholder=" " aria-labelledby="email"></textarea>
+
+    <!-- Input box for excel data (x and y values) -->
+    <label class="f6 b db mb1 mt3 sans-serif mid-gray" for="error_plot_input">(Optional) Enter your ERROR below</label>
+    <textarea id="error_input" class="ba bw1 br3 mb1 w-60 f5 pv3 ph3 bg-light-blue" required="" placeholder=" " aria-labelledby="email"></textarea>
+</div>
+
+<!-- plot settings -->
+<div class="ma3">
+    <div>
+        <label for="plot-select">Choose plot style:</label>
+
+        <select name="plots" id="plot-select">
+            <option value="lines+markers">Line Plot</option>
+            <option value="markers">Dot Plot</option>
+            <option value="bar">Bar Plot</option>
+            <option value="log">log</option>
+            <!-- <option value="pie">pie</option> -->
+
+            <!-- Add more options as needed -->
+        </select>
+
+    </div>
+    <div>
+        <label for="linestyle-select">Choose line shape:</label>
+
+        <select name="plots" id="linestyle-select">
+            <option value="">-- optional --</option>
+            <option value="spline">spline</option>
+            <option value="linear">linear</option>
+            <!-- Add more options as needed -->
+        </select>
+
+    </div>
+
+    <div>
+        <label for="tickformat-select">Choose y axis tick shape:</label>
+
+        <select name="plots" id="tickformat-select">
+            <option value="">-- optional --</option>
+            <option value=".2e">scientific</option>
+            <!-- Add more options as needed -->
+        </select>
+
+    </div>
+</div>
+
+
+
+<div class="ma3"><button onclick="plotData()">Plot Data</button></div>
+
+<!-- div where line gets plotted -->
+<div id="plot_div" style="width: 60vw; height: 70vh;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+
+<!-- <script defer src="/freiburg/js/plot.js"></script> -->
+
+<script defer src="https://2024.igem.wiki/freiburg/js/plot.js"></script>

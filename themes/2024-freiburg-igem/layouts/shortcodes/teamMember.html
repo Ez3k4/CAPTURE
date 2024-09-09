@@ -1,0 +1,23 @@
+
+
+<div class="team-member">
+  <div class="team-member-inner">
+    <div class="team-member-front tc">
+      <h2>{{ .Get "name" }}</h2>
+      <div class="image-container">
+        <div class="learn-more-box">learn more &#8594;</div>
+        <img src="{{ .Get "image" }}" alt="{{ .Get "name" }}" class="br3">
+      </div>
+    </div>
+    <div class="team-member-back br3">
+      <h2 class="name-color">{{ .Get "name" }}</h2>
+      <h3 class="role-color">{{ .Get "role" }}</h3>
+      <p>{{ .Get "bio" | markdownify }}</p>
+      <h3 class="highlight-color">My highlight during iGEM</h3>
+      <p>{{ .Get "highlight" | markdownify }}</p>
+      <a href="{{ .Get "linkedIn"}}" class="teamlinkedin absolute right-0 bottom-0 w-20 tr" target="_blank">
+        <img src="https://static.igem.wiki/teams/5057/social-icons/linkedinblue.svg" alt="LinkedIn-Icon">
+      </a>
+    </div>
+  </div>
+</div>

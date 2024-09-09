@@ -1,0 +1,137 @@
+  /* engineering cycle */
+
+  .slider-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    margin-bottom: 30px;
+    border-radius: 15px;
+    height: auto;
+}
+
+.slider{
+    transition: transform 0.3s ease-in-out;
+    width: 100%; 
+    display: flex; 
+}
+
+@media screen and (max-width: 600px){
+  .slider {
+  width: 100%;
+  display: block;
+  text-align: center;
+  }
+  .slider img,
+    .slider > * {
+        display: inline-block; /* Ensure all child elements are treated as inline-block elements */
+        margin: 0 auto; /* Center each child element */
+    }
+}
+
+.slide{
+    flex: 0 0 auto;
+    width: 100%;
+    display: none; 
+    word-wrap: break-word;
+    position: relative;
+    max-width: 48rem;
+    }
+
+  .slide.active {
+    display: block;
+    position: relative;
+  }
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    /*transform: translateY(-50%);*/
+    cursor: pointer;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.6s ease;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+.eng-cycle {
+  max-width: 16rem;
+}
+/* screen size between 0-600px */
+
+@media screen and (max-width: 600px){
+  .slide {
+  max-width: 64rem;
+  }
+}
+
+/* Media queries for different screen sizes */
+@media screen and (max-width: 1300px) and (min-width: 1200px) {
+  .slide {
+      max-width: 49rem; /* Adjust max-width for screens between 1201px and 1300px */
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1100px) {
+  .slide {
+      max-width: 43rem; /* Adjust max-width for screens between 1101px and 1200px */
+  }
+}
+
+@media screen and (max-width: 1100px) and (min-width: 1000px) {
+  .slide {
+      max-width: 40rem; /* Adjust max-width for screens between 1001px and 1100px */
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 900px) {
+  .slide {
+      max-width: 37rem; /* Adjust max-width for screens between 801px and 1000px */
+  }
+}
+@media screen and (max-width: 900px) and (min-width: 800px) {
+  .slide {
+      max-width: 31rem; /* Adjust max-width for screens between 801px and 1000px */
+  }
+}
+@media screen and (max-width: 800px) and (min-width: 700px) {
+  .slide {
+      max-width: 27rem; /* Adjust max-width for screens between 601px and 800px */
+  }
+}
+@media screen and (max-width: 700px) and (min-width: 600px) {
+  .slide {
+      max-width: 21rem; /* Adjust max-width for screens between 601px and 800px */
+  }
+}
+
+
+/* Additional media queries for .eng-cycle class */
+@media screen and (max-width: 1300px) and (min-width: 1000px){
+  .eng-cycle {
+      max-width: 12rem; /* Adjust max-width for screens between 1201px and 1300px */
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 600px) {
+  .eng-cycle {
+      max-width: 10rem; /* Adjust max-width for screens between 601px and 800px */
+  }
+}
+
+@media screen and (max-width: 600px){
+  .eng-cycle {
+  max-width: 12rem;
+  }
+}

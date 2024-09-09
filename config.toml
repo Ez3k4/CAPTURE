@@ -1,0 +1,134 @@
+title = "iGEM Freiburg 2024"
+baseURL = "https://2024.igem.wiki/freiburg"
+languageCode = "en-us"
+theme = "2024-freiburg-igem"
+resourceDir = "../resources"
+
+DefaultContentLanguage = "en"
+SectionPagesMenu = ""
+Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
+googleAnalytics = ""
+enableRobotsTXT = true
+
+# [languages]
+#   [languages.en]
+#     title = "iGEM Freiburg"
+#     
+#     contentDir = "content/en"
+#     # languageDirection = 'rtl' for Right-To-Left languages
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  text_color = ""
+  author = ""
+  favicon = "https://static.igem.wiki/teams/5057/logo-notext.svg"
+  site_logo = "https://static.igem.wiki/teams/5057/logo-notext.svg"
+  description = ""
+  # choose a background color from any on this page: https://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-iGEMblue"
+  recent_posts_number = 3
+custom_css = ["_sidebar.css","engcycle.css","team.css","navbar.css","footer.css","protocol.css", "human-practices.css", "results.css"]
+
+[[params.ananke_socials]]
+name = "twitter"
+url = "https://twitter.com/FreiburgiGEM"
+
+[[params.ananke_socials]]
+name = "instagram" 
+url = "https://www.instagram.com/igem.freiburg/"
+
+[[params.ananke_socials]]
+name = "linkedin" 
+url = "https://www.linkedin.com/company/igem-freiburg/"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+
+[[menu.main]]
+    name= "Project"
+    id = "Project"
+    weight = 10
+    [[menu.main]]
+        name = "Description"
+        pageRef="/description"
+        weight = 2
+        parent = "Project"
+    [[menu.main]]
+        name = "Engineering Success"
+        pageRef = "/engineering/"
+        weight = 3
+        parent = "Project"
+    [[menu.main]]
+        name = "Results"
+        pageRef = "/results/"
+        weight = 4
+        parent = "Project"
+    [[menu.main]]
+        name = "Contribution"
+        pageRef = "/contribution/"
+        weight = 5
+        parent = "Project"
+[[menu.main]]
+    name = "Labwork"
+    id = "Labwork"
+    weight = 20
+    [[menu.main]]
+        name = "Protocols"
+        pageRef = "/protocols/"
+        weight = 1
+        parent = "Labwork"
+    [[menu.main]]
+        name = "Notebook"
+        pageRef = "/notebook/"
+        weight = 2
+        parent = "Labwork"
+    [[menu.main]]
+        name = "Safety"
+        pageRef = "/safety/"
+        weight = 3
+        parent = "Labwork"    
+[[menu.main]]
+    id = "Parts"
+    name = "Parts"
+    weight = 30
+    [[menu.main]] 
+        name = "Plasmid Design"
+        pageRef = "/plasmid-design/"
+        weight = 2
+        parent = "Parts"  
+    [[menu.main]] 
+        name = "Part Collection"
+        pageRef = "/part-collection/"
+        weight = 1
+        parent = "Parts"  
+[[menu.main]]
+    name = "Measurement"
+    pageRef = "/measurement/"
+    weight = 40
+[[menu.main]]
+    name = "Human-Practices"
+    pageRef = "/human-practices/"
+    weight = 50
+[[menu.main]]
+    id = "Team"
+    weight = 60 
+name = "Team"
+    [[menu.main]] 
+        name = "Team Members"
+        pageRef = "/team-members/"
+        weight = 1
+        parent = "Team"  
+    [[menu.main]] 
+        name = "Attributions"
+        pageRef = "/attributions/"
+        weight = 2
+        parent = "Team"
+[[menu.main]]
+    name = "Playground"
+    pageRef = "/playground/"
+    weight = 70

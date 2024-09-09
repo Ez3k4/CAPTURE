@@ -1,0 +1,222 @@
+{{ define "main" }}
+
+<div class="main scrollsource" id="main">
+    <img src="https://static.igem.wiki/teams/5057/capture-white.svg" width="90%" alt="Capture Logo">
+    <div class="container special tc">
+        <h2 class="f1 bg-transparent ma0">Antibiotic Resistance</h2>
+        <p class="f3">is the cause of at least </p>
+        <div class="counter-container">
+            <span class="counter" data-target="1270000">0</span>
+        </div>
+        <p class="f3"> annual deaths.<br> By the year 2050, this number will rise to</p> 
+        <div class="counter-container">
+            <span class="counter iGEMpink" data-target="10000000">1270000</span>
+        </div>
+        <p class="f3">which is about the same magnitude as the number of annual deaths caused by cancer.</p>
+    </div>     
+    <div class="container" style="flex-direction: column;">
+        <div class="container tc" style="flex-direction: row;">
+            <div class="ma2">
+                <h2 class="f1 bg-transparent ma0">Antimicrobial peptides (AMPs)</h2>
+                <p class="f3">
+                    are a promising alternative to antibiotics. </p> 
+                    <p class="f3">These are small cationic peptides produced by the innate immune system. </p> 
+                    <img src="https://static.igem.wiki/teams/5057/cationic-amp.svg" alt="AMP" width="20%"> 
+                    <p class="f3">AMPs combat bacteria through various mechanisms including </p>
+                    <div class="container"  style="flex-direction: row;">
+                        <img src="https://static.igem.wiki/teams/5057/pore-formation.svg" alt="pore formation" width="30%">
+                        <p class="ma4 f3">pore formation and disruption of biofilms.</p>
+                        <img src="https://static.igem.wiki/teams/5057/biofilm-p-disruption.svg" alt="biofilm dirsuption" width="30%">
+                    </div>
+                    <br><br><br><br><br>
+                    <img src="https://static.igem.wiki/teams/5057/capture.svg" width="80%" alt="Capture Logo">
+                    <p class="f3">delivers the AMP safely on a plasmid to be produced inside of <em>Pseudomonas aeruginosa</em>.</p>
+            </div>
+            </div>
+    </div>
+    <div class="container">
+        <div class="vertical_path startpoint ma2">
+            <div class="plasmid_container"><img id="plasmid" src="https://static.igem.wiki/teams/5057/plasmid-pel-sushi-t-kanr-ori.svg" alt="plasmid"></div>
+        </div>
+        <div class="ma2 tr">
+            <h2 class="f1 bg-transparent tr ma0">The Plasmid</h2>
+            <p class="f3">contains a <em>Pseudomonas</em>-specific promoter.
+            This design guarantees that the AMPs won't be expressed in other cells.</p>
+        </div>
+    </div>
+
+    <div class="horizontal_path ma2">
+        <div class="anchor 0"></div>
+    </div>
+
+    <div class="mobile first">
+        <div class="plasmid_container"><img id="plasmid" src="https://static.igem.wiki/teams/5057/plasmid-pel-sushi-t-kanr-ori.svg" alt="plasmid"></div>
+    </div>
+    
+    <div class="container tl">
+        <div class="ma2">  
+            <p class="f3"><h2 class="f1 bg-transparent tl ma0">Two Delivery Systems</h2><p class="f3">were developed, where the Plasmid gets encapsulated by lipids to transport it into the bacteria. <br>
+            These transport vesicles only target specified bacteria strains like <em>Pseudomonas aeruginosa</em>. </p>
+        </div>
+        <div class="vertical_path ma2" style="min-width: 40%;">
+            <div id="lipid-container">
+                <div class="anchor 1" style="position: absolute;"></div>
+                <div class="svg-container" id="svg-1">
+                    <svg class="svg-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-miterlimit:1.5;">
+                        <path class="path1" d="M314.000000,0.000000C295.643863,-0.000000 257.758409,0.000000 231.258707,0.000000 C202.861771,0.000000 177.925958,0.000000 150.336719,0.000000 C122.747481,0.000000 107.648515,0.000000 85.747610,0.000000 C58.158371,0.000000 80.179584,0.000000 0.000000,0.000000 M314.000000,0.000000C295.643863,-0.000000 257.758409,0.000000 231.258707,0.000000 C202.861771,0.000000 177.925958,0.000000 150.336719,0.000000 C122.747481,0.000000 107.648515,0.000000 85.747610,0.000000 C58.158371,0.000000 80.179584,0.000000 0.000000,0.000000 " data-path-to="M157.000000,0.000000C184.589239,0.000000 207.000000,22.410761 207.000000,50.000000 C207.000000,77.589239 184.589239,100.000000 157.000000,100.000000 C129.410761,100.000000 107.000000,77.589239 107.000000,50.000000 C107.000000,22.410761 129.410761,0.000000 157.000000,0.000000 M157.000000,0.000000C184.589239,0.000000 207.000000,22.410761 207.000000,50.000000 C207.000000,77.589239 184.589239,100.000000 157.000000,100.000000 C129.410761,100.000000 107.000000,77.589239 107.000000,50.000000 C107.000000,22.410761 129.410761,0.000000 157.000000,0.000000"
+                        data-path-origin="M 314 -1 C 291 -3 249 -6 231 -7 C 203 -8 178 -9 150 -9 C 115 -9 102 -8 86 -7 C 69 -6 79 -7 0 -1 M 314 -1 C 291 -3 249 -6 231 -7 C 203 -8 178 -9 150 -9 C 115 -9 102 -8 86 -7 C 69 -6 79 -7 0 -1 " />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="horizontal_path ma2">
+        <div class="anchor 2"></div>
+    </div>
+
+    <div class="mobile second">
+        <div class="omv-container flex flex-column ma2">
+            <img id="omvs" src="https://static.igem.wiki/teams/5057/omv-icon.svg" alt="omvs">
+            <p>OMVs produced by bacteria</p>
+        </div>
+
+            
+        <div class="lipo-container flex flex-column ma2">
+            <img id="lipo" src="https://static.igem.wiki/teams/5057/liposom-pink.svg" alt="lipo">
+            <p>OMVs produced by bacteria</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="vertical_path ma2">
+            <div class="anchor 3"></div>
+        </div>
+        <div class="ma2 tr">
+            <div class="container tc flex tr">
+            <h2 class="f1 bg-transparent ma0 iGEMpink"><em>Pseudomonas aeruginosa</em></h2>
+            <img src="https://static.igem.wiki/teams/5057/pae-p-mad.svg" alt="Pseudomonas aeruginosa" width="10%">
+           </div> 
+            <p class="f3">is recognized by the WHO as a high priority pathogen that infects the lung, with urgent need for new therapeutics due to its extremely effective mechanisms for antibiotic resistance.</p>
+        </div>
+    </div>       
+
+    <div class="mobile third  flex flex-column ma2">
+
+        <p>we plan to transport the specific AMP plasmid with a nebulzer to the lung of the patient where the produced AMPs kill the bacteria from within.</p><br>
+        <div class="img-container">
+            <p>put here images that explain the last part</p>
+        </div>
+    </div>
+
+    <div class="lung-container">
+        <div class="lung_text f3"> 
+          <p style="scale: 25%;">Once inside <em>Pseudomonas aeruginosa</em> AMPs get produced and kill the bacteria from within</p>
+        </div>
+        <div class="anchor 4 lung1"> </div>
+        <div class="anchor 5 lung2"> </div>
+        <div class="anchor 6 lung3"> </div>
+        <div class="anchor 7 lung4"> </div>
+        <div class="anchor 8 lung5"> </div>
+        <div class="bakterium-container" id="svg-2">
+            <div class="amp" id="amp1"><img src="https://static.igem.wiki/teams/5057/amp-y.svg" alt="amp-y"></div>
+            <div class="amp" id="amp2"><img src="https://static.igem.wiki/teams/5057/amp-y.svg" alt="amp-y"></div>
+            <div class="amp" id="amp3"><img src="https://static.igem.wiki/teams/5057/amp-y.svg" alt="amp-y"></div>
+            <div class="amp" id="amp4"><img src="https://static.igem.wiki/teams/5057/amp-y.svg" alt="amp-y" ></div>
+
+            <svg class="svg-2" width="100%" height="100%" viewBox="0 0 1920 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                    <g>
+                        <path class="path2" d="M882.493006,306.343114C767.263028,306.343114 608.430154,274.531266 483.403812,310.558845 C358.377470,346.586423 328.536193,602.601946 501.671980,659.059267 C824.878017,764.452540 1077.160512,764.783221 1274.555982,666.085486 C1519.068376,543.829289 1551.388979,258.564830 1382.759742,226.244226 C1256.081371,201.964205 1294.229393,303.532626 882.493006,306.343114 " fill="#ff198c"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <img src="https://static.igem.wiki/teams/5057/lung.svg" alt="lung">
+</div>
+
+    <div class="container">
+        <div class="vertical_path ma2 zoombox1">
+            <div class="anchor 9 zoom1"></div>
+            <div class="anchor 10 zoom2"></div>
+            <div class="anchor 11 zoom3"></div>
+            <div class="anchor 12 zoom4"></div>
+        </div>
+    </div>
+
+    <script src="https://static.igem.wiki/teams/5057/gsap-min.js"></script>
+    <script src="https://static.igem.wiki/teams/5057/motionpathplugin-min.js"></script>
+    <script src="https://static.igem.wiki/teams/5057/scrolltrigger-min.js"></script>
+
+    <br>
+    <h1 class="mt7">Explore our Project</h1>
+    <div class="flex items-start explore-container">
+        <div class="pa4 explore-button">
+            <a href="https://2024.igem.wiki/freiburg/engineering" class="no-underline black">
+                <div class="flex flex-column">
+                    <img src="https://static.igem.wiki/teams/5057/dbtl-explore.svg" class="jump-on-hover">
+                    <h2 class="pa3 iGEMyellow tc bg-transparent">Engineering <br> Success</h2>
+                </div>
+            </a>
+        </div>
+        <div class="pa4 explore-button">
+            <a href="https://2024.igem.wiki/freiburg/human-practices" class="no-underline black">
+                <div class="flex flex-column">
+                    <img src="https://static.igem.wiki/teams/5057/ihp-explore.svg" class="jump-on-hover">
+                    <h2 class="pa3 iGEMpink tc bg-transparent">Integrated <br> Human Practices</h2>
+                </div>
+            </a>
+        </div>
+        <div class="pa4 explore-button">
+            <a href="https://2024.igem.wiki/freiburg/results" class="no-underline black">
+                <div class="flex flex-column">
+                    <img src="https://static.igem.wiki/teams/5057/results-explore.svg" class="jump-on-hover">
+                    <h2 class="pa3 iGEMblue tc bg-transparent">Results<br></h2>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="pa3" style="border: solid 5px #f51889; border-radius: 15px;">
+        <iframe title="Freiburg: CAPTURE - capturing the ESKAPE pathogens (2024) - Project Promotion [English]" width="1000px" height="600px" src="https://video.igem.org/videos/embed/39f06265-cd5d-40be-a816-7b8ff2e400fc?subtitle=en" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    </div>
+<div id="changeButton" class="center-center">
+    <a class="btn-glitch-fill">
+      <span class="text">// Secret </span><span class="text-decoration">_</span><span class="decoration">&rArr;</span>
+    </a>
+</div>
+
+
+</div>
+<script>    document.addEventListener("DOMContentLoaded", function() {
+    const counters = document.querySelectorAll('.counter');
+    const delay = 10; // Adjust this value to change the speed
+
+    const updateCount = (counter, increment, callback) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText.replace(/,/g, '');
+
+        if (count < target) {
+            counter.innerText = formatNumber(Math.min(count + increment, target));
+            setTimeout(() => updateCount(counter, increment, callback), delay); // Use the delay variable
+        } else {
+            counter.innerText = formatNumber(target);
+            if (callback) setTimeout(callback, 1000); // Add a 1-second delay before calling the callback
+        }
+    };
+
+    const formatNumber = (num) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    // Start the first counter with an increment of 10,000 and chain the second one with a different increment
+    updateCount(counters[0], 10000, () => {
+        updateCount(counters[1], 100000); // Change the increment value for the second counter
+    });
+});
+</script>
+
+
+
+{{ end }}
+
+
+

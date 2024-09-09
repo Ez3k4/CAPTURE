@@ -1,0 +1,77 @@
+/*slider footer from igem Freiburg 2023 */
+.slider-footer {
+    width: 90%;
+    overflow: hidden;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    .slider-track {
+    display: flex;
+    width: calc(250px * 30); 
+    animation: scroll 30s linear infinite;
+    }
+    
+    @keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 15));
+    }
+    }
+    
+    .slide-footer {
+    height: 150px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    perspective: 100px;
+    transition: transform 0.3s ease, z-index 0s 0.3s; 
+    position: relative; 
+    z-index: 1; 
+    overflow: hidden; 
+    }
+
+    
+    
+    #slide-picture {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; 
+    }
+    #slide-picture2 {
+    width: 80%;
+    height: auto;
+    transition: transform 0.3s ease; 
+    }
+    
+    .slide-footer:hover {
+    transform: scale(1.1); 
+    z-index: 2; 
+    }
+    
+    
+    .slider-footer::before,
+    .slider-footer::after {
+    background: linear-gradient(to right, #06d7fc 5%, rgba(255, 255, 255, 0) 100%);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+    }
+    
+    .slider-footer::before {
+    left: 0;
+    top: 0;
+    }
+    
+    .slider-footer::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+    }

@@ -1,0 +1,521 @@
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    width: 60%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
+/* should change this if i dont want to be killed by isa */
+div {
+    justify-content: center;
+    align-items: center;
+}
+
+/* objects */
+#liposome{
+    max-width: 80%;
+    min-width: 30%;
+}
+
+#plasmid{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+/* ------------------------------special container ------------------*/
+.special{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.startpoint {
+    position: relative;
+}
+
+.plasmid_container{
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    z-index: 100;
+    scale: 1;
+}
+
+#lipid-container {
+    top: 6.875rem; /* 110px converted to rem */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 0.5rem;
+    width: 100%;
+    z-index: 100;
+    /* background-color: aquamarine; */
+}
+
+.bilipid {
+    position: absolute;
+    width: 0.9375rem; /* 15px converted to rem */
+    height: 1.875rem; /* 30px converted to rem */
+    z-index: 100;
+}
+
+.bilipid img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the image scales correctly within the container */
+}
+
+.svg-container {
+      position: absolute;
+      height: 0.5rem;
+      transform-origin: 155px 50px; /* Moves the origin 50 units above the top-left corner */
+}
+
+.svg-1 {
+    height: 1em;
+    stroke-width: 5;
+    fill: none;
+    /* background-color: antiquewhite; */
+    overflow: visible;
+}
+
+.path1 {
+    stroke: rgb(69, 241, 155);
+    z-index: 1000;
+    visibility: visible;
+    position: absolute;
+    stroke-width: 1;
+/*     stroke: blue;  */
+ }
+
+.lung-container {
+    position: relative;
+    width: 60rem;
+}
+
+.bakterium-container {
+    position: absolute;
+    width: 35%;
+    top: 75%;
+    left: -1%;
+}
+.bilipid_bacterium {
+    position: absolute;
+    width: 0.9375rem; /* 15px converted to rem */
+    height: 1.875rem; /* 30px converted to rem */
+    z-index: 100;
+    scale: 0.25;
+}
+
+.bilipid_bacterium img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the image scales correctly within the container */
+}
+
+.bilipid_bacterium2 {
+    position: absolute;
+    width: 1.25rem; /* 20px converted to rem */
+    height: 2.5rem; /* 40px converted to rem */
+    z-index: 100;
+    scale: 0.25;
+}
+
+.bilipid_bacterium2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the image scales correctly within the container */
+}
+
+.lung_text {
+    position: absolute;
+    z-index: 100;
+    width: 10%; /* 10px converted to rem */
+    height: auto; /* 20px converted to rem */
+    top: 72%;
+    left: 28%;
+    opacity: 0;
+}
+
+.amp{
+    position: absolute;
+    z-index: 100;
+    width: 1rem; /* 10px converted to rem */
+    height: 1rem; /* 20px converted to rem */
+    opacity: 0;
+}
+
+#amp1{
+  top: 33%;
+  left: 55%;
+}
+
+#amp2{
+  top: 40%;
+  left: 59%;
+}
+
+#amp3{
+  top: 30%;
+  left: 50%;
+}
+
+#amp4{
+  top: 45%;
+  left: 53%;
+}
+
+.anchor.lung1 {
+    margin: 0;
+    position: absolute;
+    top: 5%;
+    left: 49%;
+}
+
+.anchor.lung2 {
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 49%;
+}
+
+.anchor.lung3 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
+.anchor.lung4 {
+    /* background-color:chartreuse; */
+    margin: 0;
+    position: absolute;
+    top: 75%;
+    left: 15.5%;
+}
+
+.anchor.lung5 {
+    /* background-color:chartreuse; */
+    margin: 0;
+    position: absolute;
+    top: 76%;
+    left: 15.5%;
+}
+
+.zoombox1 {
+    position: relative;
+}
+
+.anchor.zoom2 {
+    /* background-color: aqua; */
+    position: absolute;
+    top: -45rem;
+    left: -20rem;
+}
+
+.anchor.zoom3 {
+    /* background-color: aqua; */
+    position: absolute;
+    top: -25rem;
+    left: -20rem;
+}
+
+.anchor.zoom4 {
+    /* background-color: aqua; */
+    position: absolute;
+    left: -20rem;
+    top: 40rem;
+}
+
+/*---------------------- Path elements ----------------*/
+
+.horizontal_path {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+/*     background-color: lawngreen;
+ */    width: 100%;	
+    height: 2%;
+    margin: 0;
+}
+
+.vertical_path {
+    display: flex;
+/*     background-color: rgb(212, 255, 168);
+ */    max-width: 50%;
+    min-width: 20%;	
+    max-height: 100%;
+    margin: 0;
+}
+
+.anchor {
+   /*  background-color: rgb(255, 0, 0); */
+    width: 1px !important;	
+    height: 1px !important;
+    margin: 10rem;
+    z-index: 2000;
+}
+
+.explore-container {
+    display: flex;
+}
+
+.mobile{
+  display: none;
+}
+
+/* #################################### smaller screens < 1000px ################################ */
+@media (max-width: 1001px) {
+  .horizontal_path{
+    display: none;
+  }
+  .vertical_path{
+    display: none;
+  }
+  .lung-container{
+    display: none;
+  }
+  .mobile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80vw;
+    height: 20vh;
+    /* background-color: rgb(251, 255, 255); */
+  }
+  
+  .omv-container, .lipo-container {
+    width: auto; /* Adjust the width as needed */
+    height: 18vh; /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .omv-container img, .lipo-container img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+.main {
+  width: 90vw;
+  max-width: 100vw;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1000px){
+    .explore-container{
+      display: inline-block;
+    }
+  }
+
+  .explore-button {
+    width: 30%;
+}
+
+@media screen and (max-width: 1000px){
+    .explore-button{
+      width: 100%;
+      padding-bottom: 0px;
+    }
+  }
+
+  .counter-container {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.all {
+    background: linear-gradient(to bottom, 
+        rgb(53, 44, 177)0%,
+        rgb(140, 140, 255) 10%,  /* First color starts at 10% */
+        rgb(220, 219, 255) 25%   /* Second color starts at 30% */
+    );
+    overflow-x: hidden;
+  }
+
+
+/* ############################## BUTTON ################################################ */
+@font-face {
+    font-family: 'Space';
+    src: url('https://static.igem.wiki/teams/5057/solarspacedemoregular-jr9ao.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  [class*="btn-glitch-"] {
+    display: inline-block;
+    font-family: "VT323", monospace;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 13px;
+    min-width: 175px;
+    line-height: 1.5em;
+    white-space: no-wrap;
+    text-transform: uppercase;
+    cursor: pointer;
+    .text,
+    .decoration {
+      display: inline-block;
+    }
+    .decoration {
+      display: inline-block;
+      /* float: right; */
+    }
+    &:hover, &:focus {
+      animation-name: glitch;
+      animation-duration: 0.2s;
+      background-color: yellow;
+      color:black;
+      border: 1px solid yellow;
+      .text-decoration {
+        animation-name: blink;
+        animation-duration: 0.1s;
+        animation-iteration-count: infinite;
+      }
+      .decoration {
+        animation-name: blink;
+        animation-duration: 0.1s;
+        animation-iteration-count: infinite;
+      }
+      :before {
+        content: " ";
+        width: 15px;
+        border: 1px solid black;
+        position: absolute;
+        right: 25%;
+        bottom: 3px;
+        transform: rotate(35deg)
+      }
+      :after {
+        animation-name: shrink;
+        animation-duration:.5s;
+        animation-iteration-count: 1;
+        animation-fill-mode : forwards;
+        content: " ";
+        width: 75%;
+        border: 1px solid black;
+        position: absolute;
+        left: 0;
+        bottom: 5px;
+      }
+    }
+    &:active {
+      background: none;
+      color:yellow;
+      .text-decoration {
+        animation-name: none;
+      }
+      .decoration {
+        animation-name: none;
+      }
+      :before, :after {
+        display: none;
+      }
+    }
+  }
+  
+  @keyframes glitch {
+    25% {
+      background-color: red;
+      transform: translateX(-10px);
+      letter-spacing: 10px;
+    }
+    35% {
+      background-color: green;
+      transform: translate(10px);
+    }
+    59% {
+      opacity: 0;
+    }
+    60% {
+      background-color: blue;
+      transform: translate(-10px);
+      filter: blur(5px);
+    }
+    100% {
+      background-color: yellow;
+      blur: (5px);
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes shrink {
+    100% {
+      width: 10%;
+    }
+  }
+
+
+/* ################################ LOADING SCREEN ####################################### */
+/* Prevent scrolling when loader is visible */
+.loading {
+  position: fixed;
+}
+
+
+/* Pre-loader CSS */
+.page-loader{
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: #272727;
+  z-index: 1100;
+  .txt{
+      color: #666;
+      text-align: center;
+      top: 40%;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.3rem;
+      font-weight: bold;
+      line-height: 1.5;
+  }
+}
+.spinner {
+  position: relative;
+  top: 35%;
+  width: 300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.spinner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

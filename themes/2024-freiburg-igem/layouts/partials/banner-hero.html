@@ -1,0 +1,17 @@
+{{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+{{ if $featured_image }}
+    <div id="banner-hero" class="flex items-center justify-center w-100 h5 bg-center cover vh-50" style="background-image: url('{{ $featured_image }}');">
+        <div class="title-container flex flex-column items-center white text-shadow">
+            <div id="title">
+                <h1 id="title-on-img" class="white text-shadow">
+                    {{- .Title -}}
+                </h1>
+            </div>
+            {{ if .Description }}
+                <div class="description-container">
+                    {{ .Description }}
+                </div>
+            {{ end }}
+        </div>
+    </div>
+{{ end }}

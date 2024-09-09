@@ -1,0 +1,93 @@
+<span class="tooltip" data-tooltip="{{ .Get "text" }}">{{ .Inner }}</span>
+
+<style> 
+.tooltip {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 3px dotted black;
+  }
+  
+  /* Tooltip text */
+  .tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    background-color: #ffdff0;
+    border: #f51889 solid 3px;
+    color: #c10465;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: left;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 1;
+    font-weight: normal;
+    box-shadow: #f51889 10px 10px 17px;
+    max-width:300px;
+    white-space: normal;
+    width: 300px;
+  }
+  
+  /* Show the tooltip text when hovering */
+  .tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+  .tooltip:hover {
+  color: #f51889;
+  font-weight: bold;
+  border-bottom: none;
+}
+.tooltip-right::after {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+.tooltip.active::after {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip.active {
+  color: #f51889;
+  font-weight: bold;
+  border-bottom: none; 
+}
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const tooltips = document.querySelectorAll('.tooltip');
+    
+      tooltips.forEach(tooltip => {
+        // Handle hover for desktop
+        tooltip.addEventListener('mouseenter', function() {
+          const rect = tooltip.getBoundingClientRect();
+          const tooltipWidth = 200; // Same as the max-width in CSS
+    
+          // Check if the tooltip would extend beyond the right edge of the screen
+          if (rect.right + tooltipWidth > window.innerWidth) {
+            tooltip.classList.add('tooltip-right');
+          } else {
+            tooltip.classList.remove('tooltip-right');
+          }
+        });
+    
+        // Handle click for mobile
+        tooltip.addEventListener('click', function(event) {
+          event.preventDefault();
+          tooltip.classList.toggle('active');
+        });
+      });
+    
+      // Close tooltip when clicking outside
+      document.addEventListener('click', function(event) {
+        tooltips.forEach(tooltip => {
+          if (!tooltip.contains(event.target)) {
+            tooltip.classList.remove('active');
+          }
+        });
+      });
+    });
+    </script>

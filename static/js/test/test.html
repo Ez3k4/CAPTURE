@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Three.js Liposome with Random Distribution and Overlap Prevention
+        </title>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+                background: linear-gradient(to bottom, #4c9bb1, #1a1838); /* Gradient from top to bottom */
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+        <script>
+            // Scene
+            const scene = new THREE.Scene();
+
+            // Camera
+            const camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.6,
+                1200
+            );
+
+            // Renderer
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.shadowMap.enabled = true; // Enable shadow maps
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement); // Add renderer to HTML as a canvas element
+           
+
+
+
+            // Create the AxesHelper
+            const axesHelper = new THREE.AxesHelper(10); // Size of the axes
+            scene.add(axesHelper);
+            // Load font and create labels
+            const fontLoader = new THREE.FontLoader();
+            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+                // Create X axis label
+                const xGeometry = new THREE.TextGeometry('X', {
+                    font: font,
+                    size: 1,
+                    height: 0.1,
+                });
+                const xLabel = new THREE.Mesh(xGeometry, textMaterial);
+                xLabel.position.set(11, 0, 0); // Position at the end of the X axis
+                scene.add(xLabel);
+
+                // Create Y axis label
+                const yGeometry = new THREE.TextGeometry('Y', {
+                    font: font,
+                    size: 1,
+                    height: 0.1,
+                });
+                const yLabel = new THREE.Mesh(yGeometry, textMaterial);
+                yLabel.position.set(0, 11, 0); // Position at the end of the Y axis
+                scene.add(yLabel);
+
+                // Create Z axis label
+                const zGeometry = new THREE.TextGeometry('Z', {
+                    font: font,
+                    size: 1,
+                    height: 0.1,
+                });
+                const zLabel = new THREE.Mesh(zGeometry, textMaterial);
+                zLabel.position.set(0, 0, 11); // Position at the end of the Z axis
+                scene.add(zLabel);
+            });
+                        
+
+            // Make Canvas Responsive
+            window.addEventListener("resize", () => {
+                renderer.setSize(window.innerWidth, window.innerHeight); // Update size
+                camera.aspect = window.innerWidth / window.innerHeight; // Update aspect ratio
+                camera.updateProjectionMatrix(); // Apply changes
+            });
+
+            // Set up directional light
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(0, 100, 0); // Position the light above the scene
+            directionalLight.castShadow = true; // Enable shadows for the light
+            scene.add(directionalLight);
+
+            const helper = new THREE.PointLightHelper(directionalLight);
+            scene.add(helper);
+
+            // Set up shadow properties for the light
+            directionalLight.shadow.mapSize.width = 1024; // Shadow map resolution
+            directionalLight.shadow.mapSize.height = 1024;
+            directionalLight.shadow.camera.near = 0.5; // Near clipping plane
+            directionalLight.shadow.camera.far = 50; // Far clipping plane
+
+            // Add a plane to receive shadows
+            const planeGeometry = new THREE.PlaneGeometry(500, 500);
+            const planeMaterial = new THREE.ShadowMaterial({ opacity: 0.5 });
+            const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+            plane.rotation.x = -Math.PI / 2; // Rotate the plane to be horizontal
+            plane.position.y = -5; // Position the plane below the spheres
+            plane.receiveShadow = true; // Enable shadows for the plane
+            scene.add(plane);
+
+           // Function to create a liposome-like structure
+           function createLiposome(position) {
+                const numSmallSpheres = 380; // Number of smaller spheres
+                const bigSphereRadius = 5; // Radius of the large imaginary sphere
+                const smallSphereRadius = 0.5; // Radius of each smaller sphere
+                const minDistance = smallSphereRadius * 1.5; // Minimum distance between small spheres to avoid overlap
+
+                const smallSphereGeometry = new THREE.SphereGeometry(
+                    smallSphereRadius,
+                    32,
+                    32
+                );
+                const smallSphereMaterial = new THREE.MeshStandardMaterial({
+                    color: 0xd102a4,
+                });
+
+                // Array to store the initial positions of the spheres
+                const smallSpheres = [];
+
+                // Helper function to calculate the distance between two 3D points
+                function calculateDistance(pos1, pos2) {
+                    return pos1.distanceTo(pos2);
+                }
+
+                // Generate small spheres distributed on the surface of the large sphere
+                for (let i = 0; i < numSmallSpheres; i++) {
+                    let positionIsValid = false;
+                    let smallSphere;
+                    let x, y, z;
+
+                    while (!positionIsValid) {
+                        // Randomly distribute the small spheres over the surface of the large sphere using spherical coordinates
+                        const theta = Math.random() * Math.PI * 2; // Longitude
+                        const phi = Math.acos(2 * Math.random() - 1); // Latitude
+
+                        // Convert spherical coordinates to Cartesian coordinates
+                        x = bigSphereRadius * Math.sin(phi) * Math.cos(theta);
+                        y = bigSphereRadius * Math.sin(phi) * Math.sin(theta);
+                        z = bigSphereRadius * Math.cos(phi);
+
+                        const newPosition = new THREE.Vector3(x, y, z);
+
+                        // Check if the new position is far enough from all previously placed spheres
+                        positionIsValid = true; // Assume it's valid until proven otherwise
+                        for (let j = 0; j < smallSpheres.length; j++) {
+                            const otherSphere = smallSpheres[j];
+                            const distance = calculateDistance(
+                                newPosition,
+                                otherSphere.initialPosition
+                            );
+
+                            if (distance < minDistance) {
+                                positionIsValid = false; // Overlap detected, try again
+                                break;
+                            }
+                        }
+                    }
+
+                    // Create the new small sphere at a valid position
+                    smallSphere = new THREE.Mesh(
+                        smallSphereGeometry,
+                        smallSphereMaterial
+                    );
+                    smallSphere.position.set(x, y, z).add(position);
+                    smallSphere.castShadow = true; // Enable shadows for the sphere
+
+                    // Store the small sphere and its initial position
+                    smallSpheres.push({
+                        mesh: smallSphere,
+                        initialPosition: new THREE.Vector3(x, y, z),
+                    });
+
+                    // Add the small sphere to the scene
+                    scene.add(smallSphere);
+                }
+            }
+
+            // Create multiple liposome-like structures at different positions
+            createLiposome(new THREE.Vector3(0, 0, 0)); // mitte
+            createLiposome(new THREE.Vector3(-20, 10, 20)); // vorne links
+            createLiposome(new THREE.Vector3(80, 50, -60)); // weit rechts, oben, hinten 
+            createLiposome(new THREE.Vector3(50, -30, -40)); // rechts, unten, hinten 
+
+            // Position the camera
+            camera.position.z = 40;
+
+            // Variables to control the wobble effect
+            let time = 0;
+            const wobbleAmount = 0.1; // How much wobble
+            const wobbleSpeed = 2; // Speed of wobble
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                time += 0.01; // Increment time for animation
+
+                // Apply wobble to each small sphere
+                scene.children.forEach((child) => {
+                    if (child.isMesh && child.geometry.type === 'SphereGeometry') {
+                        const initialPosition = child.userData.initialPosition || child.position.clone();
+                        child.userData.initialPosition = initialPosition;
+
+                        // Wobble effect using sin and cos functions
+                        const wobbleX =
+                            initialPosition.x +
+                            wobbleAmount * Math.sin(time * wobbleSpeed + child.id);
+                        const wobbleY =
+                            initialPosition.y +
+                            wobbleAmount *
+                                Math.cos(time * wobbleSpeed + child.id * 0.5);
+                        const wobbleZ =
+                            initialPosition.z +
+                            wobbleAmount *
+                                Math.sin(time * wobbleSpeed + child.id * 0.3);
+
+                        // Set the new wobbled position
+                        child.position.set(wobbleX, wobbleY, wobbleZ);
+                    }
+                });
+
+                // Rotate the entire scene for a better view of the structure
+                //scene.rotation.x += 0.0005;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        </script>
+    </body>
+</html>

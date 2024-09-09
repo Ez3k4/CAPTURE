@@ -1,0 +1,180 @@
+
+.teamname {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 30px;
+  }
+  
+  .dropdown-content {
+    min-width: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60px;
+  }
+  
+  @media screen and (max-width: 1305px) {
+    .dropdown-content {
+      top: 40px;
+      background-color:#352cb1;
+    }
+  }
+  
+  .dropdown-content a {
+    background-color: #352cb1;
+    color: white;
+    border-top: 1px solid white;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .dropdown-content a:hover {
+      background: #352cb1;
+      color: #f51889;
+      border: 2px solid #f51889;
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+    }
+  
+  .dropdown.active .drop-triangle {
+    transform: rotateX(180deg);
+  }
+  
+  .drop-triangle {
+      max-width: 1.5rem;
+      pointer-events: none; /* This makes clicks pass through to the button */
+      align-self: center;
+    }
+  
+  .dropbtn {
+      background-color: #352cb1;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      display: flex; /* Make it a flex container */
+      align-items: center; /* Center children vertically */
+      justify-content: center; /* Center children horizontally (optional) */
+    }
+
+  
+  /* Hide the hamburger icon by default */
+  .hamburger-icon {
+    display: none;
+  }
+  
+  /* Show the navigation menu by default */
+  .nav-menu {
+    display: block;
+  }
+  
+  /* Only show the hamburger icon and hide the navigation menu at a device width of 1070px or less */
+  @media screen and (max-width: 905px) {
+    .hamburger-icon {
+      display: block;
+      background-color:transparent;
+      position:absolute;
+      align-items: center;
+      border: none;
+      top: 20px; 
+      right: 15px;
+    }
+  
+    .nav-menu {
+      display: none;
+    }
+  
+    .nav-menu.active {
+      display: block;
+    }
+  }
+  
+  #title-on-img {
+    font-size: clamp(3rem, 8vw, 12rem);
+  }
+
+  @media screen and (min-width: 905px) {
+  .nav-container {
+    display:flex;
+  }
+  .children{
+    width: auto;
+    font-size: 1.25rem;
+  }
+  .nav-items{
+    width: auto;
+    margin: 0;
+    font-size: 1.25rem;
+    flex-direction: row;
+  }
+}
+
+.logo{
+  width: 50px;
+}
+
+@media screen and (min-width: 1305px) {
+  .children{
+    font-size: 1.25rem;
+  }
+  .nav-items{
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 1305px) and (min-width:905px){
+  .children{
+    font-size: 0.9rem;
+    padding: 0;
+  }
+  .nav-items{
+    font-size: 0.9rem;
+    padding: 0;
+  }
+  .teamname{
+    font-size: 1.2rem;
+  }
+  .capture{
+    font-size: 1.2rem;
+  }
+  .drop-triangle{
+    width: 1.2rem;
+  }
+  .logo{
+    width: 35px;
+  }
+}
+
+@media screen and (max-width: 905px){
+  .children{
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  .nav-items{
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .nav-menu{
+    text-align:center;
+    padding-right:20%;
+ }
+  .dropdown{
+    padding-left: 25px;
+  }
+  .drop-triangle{
+    width: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 420px){
+  .capture{
+    display:none;
+  }
+}
+@media screen and (max-width: 315px){
+  .teamname{
+    display:none;
+  }
+}

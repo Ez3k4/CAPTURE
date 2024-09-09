@@ -1,0 +1,8 @@
+{{ $socials := where (partialCached "func/socials/Get" "socials/Get") "follow" "!=" false }}
+<div class="ananke-socials tr mt3">
+  {{ range $socials }}
+    <a href="{{ .url }}" target="_blank" class="{{ .name }} ananke-social-link link-transition stackoverflow link dib z-999" title="{{ .label }} link" rel="noopener" aria-label="follow on {{ .label }}——Opens in a new window">
+      <span class="icon" data-service="{{ .name }}"></span>
+    </a>
+  {{ end }}
+</div>

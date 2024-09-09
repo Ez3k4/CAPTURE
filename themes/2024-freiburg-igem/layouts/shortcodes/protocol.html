@@ -1,0 +1,11 @@
+        <div class="protocol-wrapper">
+          <div class="protocol-title">
+            <input type="checkbox" name="" id="{{ .Get "name"}}" />
+            <label for="{{ .Get "name"}}">{{ .Get "name"}}</label>
+            <div class="protocol-content-wrap">
+              <div class="protocol-content">
+                {{ .Inner }}
+              </div>
+            </div>
+          </div>
+        </div>

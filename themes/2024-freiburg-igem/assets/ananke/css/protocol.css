@@ -1,0 +1,53 @@
+
+.protocol-title label {
+    padding-left: 2rem;
+    background-color: white;
+    border: solid #06d7fc;
+    margin-top: 1rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.protocol-title input {
+    display: none;
+}
+
+h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+    margin-top: 1.5rem;
+}
+
+.protocol-title label::after {
+    content: "+";
+    font-size: 2rem;
+    margin-right: 1.5rem;
+    transition: rotate 0.5s;
+}
+
+.protocol-content-wrap {
+    max-height: 0;
+
+    overflow: hidden;
+    transition: max-height 0.3s;
+    background-color: white;
+}
+
+.protocol-content {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.protocol-title input:checked ~ .protocol-content-wrap{
+    max-height: 1700px;
+}
+
+.protocol-title input:checked + label::after {
+    rotate: 45deg;
+}

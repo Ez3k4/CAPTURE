@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default "en" }}" {{- with partialCached "func/GetLanguageDirection" "GetLanguageDirection" }} dir="{{ . }}" {{- end }}>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script defer src="https://static.igem.wiki/teams/5057/jquery-3-7-1-min.js"></script>
+    <script defer src="https://2024.igem.wiki/freiburg/js/menu.js"></script>
+    <script defer src="https://2024.igem.wiki/freiburg/js/footer.js"></script>
+<!--     <script defer src="https://2024.igem.wiki/freiburg/js/sidebar.js"></script> --><!--  activate for online version -->
+    <script defer src="/freiburg/js/sidebar.js"></script><!--  activate for local version -->
+    <script defer src="https://2024.igem.wiki/freiburg/js/exploreProject.js"></script>
+    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="viewport" content="width=device-width,min-width=200px minimum-scale=1">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    {{ hugo.Generator }}
+    {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
+    {{ $production := eq (getenv "HUGO_ENV") "production" | or (eq site.Params.env "production") }}
+    {{ $public := not .Params.private }}
+    {{ if and $production $public }}
+      <meta name="robots" content="index, follow">
+    {{ else }}
+      <meta name="robots" content="noindex, nofollow">
+    {{ end }}
+
+    {{ partial "site-style.html" . }}
+    {{ partial "site-scripts.html" . }}
+    
+    {{ block "favicon" . }}
+      {{ partialCached "site-favicon.html" . }}
+    {{ end }}
+
+    {{ if .OutputFormats.Get "RSS" }}
+    {{ with .OutputFormats.Get "RSS" }}
+      <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+      <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+      {{ end }}
+    {{ end }}
+
+
+    <!-- i think this two if statements get js and css set in fontmatter of each single site. For ex if on _index.md set js like js: "landing.js" it uses this script for the _index.md site -->
+    {{ if .Params.js }}
+<!--         <script type="module" defer src="https://2024.igem.wiki/freiburg/js/{{ .Params.js }}"></script> -->
+      <script defer src="/freiburg/js/{{ .Params.js }}"></script>
+    {{ end }}
+    {{ if .Params.css }}
+<!--       <link rel="stylesheet" href="https://2024.igem.wiki/freiburg/css/{{ .Params.css }}" /> -->
+      <link rel="stylesheet" href="/freiburg/css/{{ .Params.css }}" />
+    {{ end }}
+
+
+    
+    {{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates */}}
+    {{- template "_internal/opengraph.html" . -}}
+    {{- template "_internal/schema.html" . -}}
+    {{- template "_internal/twitter_cards.html" . -}}
+
+	{{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
+  </head>
+
+<body onload="hideLoader()" class="ma0 loading all {{ $.Param "body_classes"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
+
+  <!-- loading screen only on homepage -->
+  {{ if .IsHome }}
+  <!-- Page Loader -->
+  <div class="page-loader">
+    <div class="spinner">
+      <img src="https://static.igem.wiki/teams/5057/spinner-infinty.gif" alt="Loading...">
+    </div>
+  </div>
+  {{ end }}
+
+
+    {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
+    {{ partial "banner-hero.html" . }}
+    <!-- checks in markdown if sidebar should be loaded  -->
+    {{ if .Params.sidebar }}
+    <div class="main-wrapper">
+      <div class="content-grid">
+        <div class="sidebar">
+          {{ partial "sidebar.html" . }}
+        </div>
+        <main class="pb7 ma0 flex justify-center main-content" role="main">
+          {{ block "main" . }}{{ end }}
+        </main>
+      </div>
+    </div>
+  {{ else }}
+    <main class="ma0 flex justify-center main-content" role="main">
+
+      {{ block "main" . }}{{ end }}
+    </main>
+  {{ end }}
+
+    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+
+</body>
+</html>

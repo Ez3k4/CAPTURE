@@ -1,0 +1,481 @@
+
+.full-width-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed; /* Ensures the table layout is fixed */
+}
+
+.full-width-table th, .full-width-table td {
+    height: 80px; /* Fixed height for each cell */
+    max-height: 80px;
+    text-align: center; /* Centers the content horizontally */
+    vertical-align: middle; /* Centers the content vertically */
+    padding: 0;
+    margin: 0; /* Ensures no margin affects the cell height */
+    box-sizing: border-box;
+    white-space: normal; /* Allow text to wrap */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    display: table-cell;
+    font-size: 16px; /* Set the fixed font size */
+}
+
+/* Font size for table cells on screens between 1001px and 1530px */
+@media (min-width: 1051px) and (max-width: 1530px) {
+    .full-width-table th, .full-width-table td {
+        font-size: 12px; /* Set the specific font size for this range */
+    }
+}
+
+/* Font size for table cells on screens between 1001px and 1050px */
+@media (min-width: 1001px) and (max-width: 1050px) {
+    .full-width-table th, .full-width-table td {
+        font-size: 10px; /* Set the specific font size for this range */
+    }
+}
+
+.full-width-table img {
+    display: block; /* Changes the image from inline to block, removing the gap */
+    width: 100%; /* Ensures the image fills the cell's width */
+    height: 100%; /* Ensures the image fills the cell's height */
+    object-fit: fill; /* Ensures the image stretches to fill the cell, even if distorted */
+    margin: 0; /* Removes any default margin */
+}
+
+.full-width-table td.has-popup {
+    padding: 10px; /* Padding for cells containing popup window buttons */
+}
+
+
+#popupWindow {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Adjust as needed */
+    height: 80%; /* Adjust as needed */
+    margin-top: 3%;
+    color: #352cb1;
+    background: #c9c6ff;
+    border: none;
+    padding-left: 15px;
+    padding-right:15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack children vertically */
+    overflow-y: auto; /* Enables vertical scrolling */
+    box-shadow: 0 0px 10px 3px #352cb1b2;
+}
+
+/*close button of popupWindow*/
+#popupWindow button {
+    position: absolute; /* Absolute positioning within the popup */
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 30px;
+    color: #c9c6ff;
+    background-color: #352cb1;
+    box-shadow: 0 0px 6px 2px #4e47b055;
+    border: transparent; /* Change to your desired color */
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+#popupWindow button:hover {
+    color: #f5f5ff;
+    box-shadow: 0 0px 4px 2px #4e47b0a7; /* Shadow effect on hover */
+    background-color: rgb(66, 58, 183);
+}
+
+
+#popupHeader {
+    margin: 0px;
+    font-size: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#popupHeader p {
+    margin: 0;
+    line-height: 1.5; /* Adjust the value as needed */
+}
+
+#popupHeader img.portrait {
+    float: left;
+    margin-right: 20px;
+    margin-top: 5px;
+    border-radius: 10px;
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    box-shadow: 0 0px 5px 2px #884acbc1; /* Shadow effect on hover */;
+}
+
+#headerTop {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#popupIcons {
+    display: flex;
+    margin-left: 10px; /* Add some space between the name and icons */
+}
+
+#popupIcons img {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    margin-left: 20px;
+    box-shadow: 0 0px 6px 2px #884acbc1; /* Shadow effect on hover */
+    border-radius: 50%; /* Ensure the shadow is round */
+}
+
+#popupIcons img:hover {
+    box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.811); 
+    border-radius: 50%; /* Ensure the shadow is round */
+}
+
+
+/* customize scrollbar */
+#popupWindow::-webkit-scrollbar {
+    width: 10px; 
+}
+
+#popupWindow::-webkit-scrollbar-track {
+    background: transparent; 
+    border-radius: 10px;
+}
+
+#popupWindow::-webkit-scrollbar-thumb {
+    background: #352cb1; 
+    border-radius: 10px; 
+}
+
+#popupWindow::-webkit-scrollbar-thumb:hover {
+    background: #ccc8fb; 
+}
+  
+.has-popup {
+    position: relative; /* Needed for absolute positioning of the pseudo-element */
+    cursor: pointer; /* Indicates the cell is clickable */
+    text-align: center; /* Centers content horizontally */
+    vertical-align: middle; /* Centers content vertically */
+    overflow: visible; /* Allows the pseudo-element to overflow the cell */
+    padding: 5px; /* Adds padding inside the cell */
+}
+
+/*popup styling before hovering*/
+.has-popup::before {
+    content: ""; /* Required for a pseudo-element */
+    position: absolute; /* Positions the pseudo-element relative to its parent */
+    top: 5px; /* 10px from the top */
+    left: 5px; /* 10px from the left */
+    width: calc(100% - 10px); /* Width of the square with 10px margin on each side */
+    height: calc(100% - 10px); /* Height of the square with 10px margin on each side */
+    background-color: #fffcfdc4; /* Background color of the square */
+    border-radius: 10px; /* Rounded corners of the square */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    z-index: -1; /* Ensure the pseudo-element is behind the text */
+}
+
+/*popup button styling in different colors*/
+.has-popup.plasmidsbox::before {
+    box-shadow: 
+      0 0 1px #f463ae,
+      0 0 7px #f463aec8; /* Darker and larger shadow on hover */
+}
+
+.has-popup.liposomesbox::before {
+    box-shadow: 
+      0 0 1px #76eaff,
+      0 0 7px #76eaffc4; /* Darker and larger shadow on hover */
+}
+
+.has-popup.omvsbox::before {
+    box-shadow: 
+      0 0 1px #ffa578,
+      0 0 7px #ffa578ca; /* Darker and larger shadow on hover */
+}
+
+.has-popup.modelingbox::before {
+    box-shadow: 
+      0 0 1px #e46cff,
+      0 0 7px #e46cffcc; /* Darker and larger shadow on hover */
+}
+
+.has-popup.needbox::before {
+    box-shadow: 
+      0 0 1px #68b160,
+      0 0 7px #68b160c2; /* Darker and larger shadow on hover */
+}
+
+.has-popup.safetybox::before {
+    box-shadow: 
+      0 0 1px #5151c9,
+      0 0 7px #5151c9d0; /* Darker and larger shadow on hover */
+}
+
+.has-popup.treatmentbox::before {
+    box-shadow: 
+      0 0 1px #f8e267,
+      0 0 7px #f8e267c2; /* Darker and larger shadow on hover */
+}
+
+.has-popup.healthcarebox::before {
+    box-shadow: 
+      0 0 1px #f8657d,
+      0 0 7px #f8657ed7; /* Darker and larger shadow on hover */
+}
+
+/*popup button styling upon hovering in different colors*/
+.has-popup.plasmidsbox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #dc117a,
+      0 0 7px #f5188ad2; /* Darker and larger shadow on hover */
+}
+
+.has-popup.liposomesbox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #05c8eb,
+      0 0 7px #06d7fcca; /* Darker and larger shadow on hover */
+}
+
+.has-popup.omvsbox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #f0611a,
+      0 0 7px #ff681cc2; /* Darker and larger shadow on hover */
+}
+
+.has-popup.modelingbox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #c300ef,
+      0 0 7px #d000ffbd; /* Darker and larger shadow on hover */
+}
+
+.has-popup.needbox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #11ab00,
+      0 0 7px #12b900ce; /* Darker and larger shadow on hover */
+}
+
+.has-popup.safetybox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #0000bb,
+      0 0 7px #0000d1b3; /* Darker and larger shadow on hover */
+}
+
+.has-popup.treatmentbox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #ffd500,
+      0 0 7px #fbd604c9; /* Darker and larger shadow on hover */
+}
+
+.has-popup.healthcarebox:hover::before {
+    background-color: #ffffff; /* Background color of the square */
+    box-shadow: 
+      0 0 1px #ce0022,
+      0 0 7px #e50026ce; /* Darker and larger shadow on hover */
+}
+
+  table {
+    table-layout: fixed;
+    width: 100%; /* Ensure the table width is defined */
+  }
+
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.drop {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 2px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.drop-plasmids {
+    border-color: #f51889;
+}
+
+.drop-liposomes {
+    border-color: #06d7fc;
+}
+
+.drop-omvs {
+    border-color: #ff671c;
+}
+
+.drop-modeling {
+    border-color: #d000ff;
+}
+
+.drop-need {
+    border-color: #13b900;
+}
+
+.drop-safety {
+    border-color: #0000d1;
+}
+
+.drop-treatment {
+    border-color: #fbd604;
+}
+
+.drop-healthcare{
+    border-color: #e50026;
+}
+
+.description {
+    display: none; /* Ensure descriptions are hidden by default */
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: absolute;
+    right: 10px;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.portrait-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.container.human-practices .description img.portrait {
+    float: left;
+    margin: 0;
+    border-radius: 10px;
+    width: 150px; 
+    height: auto; /* Maintain aspect ratio */
+}
+
+.container.human-practices .description .icons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.container.human-practices .description .icons a {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.container.human-practices .description .icons .icon {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    box-shadow: 0 0px 5px rgba(137, 137, 137, 0.797); /* Shadow effect on hover */
+    border-radius: 50%; /* Ensure the shadow is round */
+}
+
+.container.human-practices .description .icons .icon:hover {
+    box-shadow: 0 0px 8px rgb(137, 137, 137); /* Shadow effect on hover */
+    border-radius: 50%; /* Ensure the shadow is round */
+}
+
+.container.human-practices .description p {
+    margin-top: 10px;
+    line-height: 1.5; /* Adjust the value as needed */
+    clear: both; /* Ensure the paragraph clears any floats */
+}
+
+@media (max-width: 1000px) {
+    .container {
+        padding: 0px;
+    }
+
+    .full-width-table table {
+        display: none;
+    }
+
+    .human-practices h3 {
+        display: block;
+    }
+
+
+}
+
+@media (min-width: 1001px) {
+    .name, .description {
+        display: none;
+    }
+
+    .human-practices h3 {
+        display: none;
+    }
+
+    .container.human-practices {
+        display: none;
+    }
+}
+
+/*styling of phone version headers*/
+
+.plasmids {
+    color: #f51889;
+    font-weight: bold;
+}
+
+.liposomes {
+    color: #06d7fc;
+    font-weight: bold;
+}
+.omvs {
+    color: #ff671c;
+    font-weight: bold;
+}
+
+.modeling {
+    color: #d000ff;
+    font-weight: bold;
+}
+
+.need {
+    color: #13b900;
+    font-weight: bold;
+}
+
+.safety {
+    color: #0000d1;
+    font-weight: bold;
+}
+
+.treatment {
+    color: #fbd604;
+    font-weight: bold; 
+}
+
+.healthcare {
+    color: #e50026;
+    font-weight: bold; 
+}
