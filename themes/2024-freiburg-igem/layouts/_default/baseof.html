@@ -73,6 +73,19 @@
 
     {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
     {{ partial "banner-hero.html" . }}
+      <!-- Check if the current page is the homepage -->
+      {{ if .IsHome }}
+        <!-- Canvas for Three.js animation -->
+        <div class="canvas-container">
+          <canvas id="three-canvas"></canvas>
+          <div class="heading-container">
+            <h1>CAPTURE</h1>
+          </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="/freiburg/js/threejsanimation.js"></script>
+        <link rel="stylesheet" href="/freiburg/css/threejsanimation.css" />
+      {{ end }}
     <!-- checks in markdown if sidebar should be loaded  -->
     {{ if .Params.sidebar }}
     <div class="main-wrapper">
@@ -81,6 +94,7 @@
           {{ partial "sidebar.html" . }}
         </div>
         <main class="pb7 ma0 flex justify-center main-content" role="main">
+                <!-- Check if the current page is the homepage -->
           {{ block "main" . }}{{ end }}
         </main>
       </div>

@@ -1,0 +1,30 @@
+/* ########################### canvas container ######################### */
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* Adjust the height as needed */
+    overflow: hidden;
+  }
+  
+  #three-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the canvas is behind the heading */
+  }
+  
+  .heading-container {
+    position: relative;
+    z-index: 1; /* Ensure the heading is above the canvas */
+    text-align: center;
+    padding: 100px 0; /* Adjust padding as needed */
+  }
+  
+  .heading-container h1 {
+    color: white; /* Adjust text color as needed */
+    font-size: clamp(3rem,8vw,12rem);
+    text-shadow: 0 0 10px rgba(27,23,27,.726);
+    
+  }
