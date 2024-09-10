@@ -92,7 +92,7 @@ div {
 }
 
 .path1 {
-    stroke: rgb(69, 241, 155);
+    /* stroke: rgb(69, 241, 155); */
     z-index: 1000;
     visibility: visible;
     position: absolute;

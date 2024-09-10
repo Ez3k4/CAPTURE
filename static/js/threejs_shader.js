@@ -11,13 +11,13 @@ function getShader(id) {
 const canvas = document.getElementById('three-canvas');
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 renderer.shadowMap.enabled = true; // Enable shadow maps
-renderer.setSize(window.innerWidth, window.innerHeight/2);
+renderer.setSize(window.innerWidth, window.innerHeight * 0.7);
 
 //################################## CAMEREA ################################
 
 // init scene and camera
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(45, window.innerWidth / (window.innerHeight / 2), 0.01, 3000);
+var camera = new THREE.PerspectiveCamera(45, window.innerWidth / (window.innerHeight * 0.7), 0.01, 3000);
 camera.position.z = 12;
 
 /* // Add OrbitControls
@@ -31,7 +31,7 @@ controls.screenSpacePanning = false; // Disable panning */
 // ################################# OBJECT ##################################
 
 const uniforms = {
-    u_resolution: { type: 'v2', value: new THREE.Vector2(window.innerWidth, window.innerHeight / 2) },
+    u_resolution: { type: 'v2', value: new THREE.Vector2(window.innerWidth, window.innerHeight * 0.7) },
     u_time: { type: 'f', value: 0.0 }
 }
 
@@ -73,6 +73,15 @@ function animate() {
     renderer.render(scene, camera);
     // Update the u_time uniform
     uniforms.u_time.value += 0.01;
-
 }
 animate();
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight * 0.7;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    uniforms.u_resolution.value.set(width, height);
+});
