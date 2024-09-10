@@ -17,7 +17,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 
 
-
 // Create the AxesHelper
 const axesHelper = new THREE.AxesHelper(10); // Size of the axes
 scene.add(axesHelper);

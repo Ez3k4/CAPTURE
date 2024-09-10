@@ -79,7 +79,7 @@ html {
 }
 
 .content-grid {
-    display: grid;
+    display: grid;  
     grid-template-columns: min(150px) 1fr; /* Sidebar min width 200px, max width 300px, and main content takes the remaining space */
     gap: 20px; /* Gap between the columns */
     width: 80rem;
