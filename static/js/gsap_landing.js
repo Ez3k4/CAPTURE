@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {   
-    const lungContainer = document.querySelector(".lung-container");
+    const lungContainer = document.querySelector(".pin-container");
 
     if (lungContainer) {
         console.log("Lung found")
         const rect = lungContainer.getBoundingClientRect();
-        const roundedWidth = Math.floor(rect.width) - 1;
-        const roundedHeight = Math.floor(rect.height) - 1;
+        const roundedWidth = Math.floor(rect.width) +1;
+        const roundedHeight = Math.floor(rect.height) +1;
 
         lungContainer.style.width = `${roundedWidth}px`;
         lungContainer.style.height = `${roundedHeight}px`;
@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const DOM_plasmid = DOM(".plasmid_container")
     const DOM_liposome = DOM(".lipid-container")
+    const DOM_lung = DOM(".lung-container")
+    console.log(DOM_lung)
 
     // important points
     const startpoint = {x: DOM_plasmid.x + (DOM_plasmid.width/2), y: DOM_plasmid.y + (DOM_plasmid.height/2)}
@@ -177,24 +179,28 @@ document.addEventListener('DOMContentLoaded', function() {
     /* --------------------------------- Guide path --------------------------------- */
 
     const guide1 = getElement(".guide1")
+    const guide2 = getElement(".guide2")
+    const guide3 = getElement(".guide3")
+    const guide4 = getElement(".guide4")
 
 
     /* ################################# Timeline ################################# */
 
     // enables matching animation to windowsize
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     //create a timeline object
     let tl_plasmid = gsap.timeline({
             onUpdate: () => {
                 //console.log(getCurrentPath('path.path1')),
                 position_elements('path.path1', bilipid_elements)
+                position_elements('path.path2', bilipid_elements2)
         },
         //connect the timeline to scrolltrigger instead of duration in s
         scrollTrigger: {
             trigger: ".scrollsource", // selector or element 
-            start: "10% center", // [trigger]=animated element, [scroller]=viewport
-            end: "30% center",
+            start: "20% center", // [trigger]=animated element, [scroller]=viewport
+            end: "bottom center",
             scrub: 1, // Add scrub to control the animation progress on scroll
             markers: true, // Add markers 
         },
@@ -303,11 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: "linear",
         duration: 1,
     }, 3)
-
-    tl_plasmid.to(liposome, {
-        rotation: 180,
-        duration: 1,
-    }, 3)
     //4
     tl_plasmid.to(liposome, {
         motionPath: {
@@ -323,10 +324,10 @@ document.addEventListener('DOMContentLoaded', function() {
     /* --------------------------------- Common path --------------------------------- */
     // guide element inside lung
     const guide = getElement(".lung1")
-    const scale_factor = 9
+    const scale_factor = 12
     //5
     // Calculate the relative position of guide1 with respect to guide
-    const relativePosition = MotionPathPlugin.getRelativePosition(guide, guide1, [0, 5]); // no clue why 5 is fitting
+    const relativePosition = MotionPathPlugin.getRelativePosition(guide, guide1); // no clue why 5 is fitting
     // Animate the guide element to the position of guide1
     tl_plasmid.to(guide, {
         x: relativePosition.x,
@@ -352,12 +353,13 @@ document.addEventListener('DOMContentLoaded', function() {
     tl_plasmid.to(guide, {
         x: relativePosition.x,
         y: relativePosition.y,
-        duration: 1,
+        duration: 0,
         onUpdate: () => {
             sync_move(plasmid2, guide, [0.5, 0.5]);
             sync_move(liposome2, guide, { x: 158, y: 50 });
         }
     }, 6);
+
     //liposome1 and plasmid1 fade out
     tl_plasmid.to(plasmid, {
         opacity: 0,
@@ -370,16 +372,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 6);
     //liposome2 and plasmid2 fade in
     tl_plasmid.to(plasmid2, {
-        scale: 1 / (scale_factor / 2),
+        scale: 1 / scale_factor,
         opacity: 1,
         duration: 0,
     }, 6);
     tl_plasmid.to(liposome2, {
-        scale: 1 / (scale_factor / 2),
+        scale: 1 / scale_factor,
         opacity: 1,
         duration: 0,
     }, 6);
+    tl_plasmid.to(liposome2, {
+        rotation: 180,
+        duration: 1,
+    }, 6)
 
+    // let the spawned plasmid2 and liposome2 move to biofilm
+    // Calculate the relative position of guide2 with respect to guide
+    const relativePosition2 = MotionPathPlugin.getRelativePosition(guide, guide2); // no clue why 5 is fitting
+    // Animate the guide element to the position of guide2
+    tl_plasmid.to(guide, {
+        x: relativePosition2.x,
+        y: relativePosition2.y,
+        duration: 1,
+        onUpdate: () => {
+            sync_move(plasmid2, guide, [0.5, 0.5]);
+            sync_move(liposome2, guide, { x: 158, y: 50 });
+        }
+    }, 6);
 
     //7
     //grow
@@ -396,34 +415,122 @@ document.addEventListener('DOMContentLoaded', function() {
         sync_move(liposome2, guide, {x: 158, y: 50 });
         }
     }, 7);
+    //8
+    const relativePosition3 = MotionPathPlugin.getRelativePosition(guide, guide3); // no clue why 5 is fitting
+    // Animate the guide element to the position of guide2
+    tl_plasmid.to(guide, {
+        x: relativePosition3.x,
+        y: relativePosition3.y,
+        duration: 1.5,
+        onUpdate: () => {
+            sync_move(plasmid2, guide, [0.5, 0.5]);
+        }
+    }, 8);
+    const relativePosition4 = MotionPathPlugin.getRelativePosition(guide2, guide3); // no clue why 5 is fitting
+    tl_plasmid.to(guide2, {
+        x: relativePosition4.x,
+        y: relativePosition4.y - 12,
+        duration: 1,
+        onUpdate: () => {
+            sync_move(liposome2, guide2, { x: 158, y: 50 });
+        }
+    }, 8);
 
+    // reverse encapsulation
+    const pathOrigin = pathElement.getAttribute('data-path-origin');
+    tl_plasmid.to(".path2", {
+        attr: { d: pathOrigin },
+        duration: 1
+    },8.5)
+
+    // Extinguish
+    tl_plasmid.to(liposome2, {
+        opacity: 0
+    }, 9.5);
+
+    tl_plasmid.to(plasmid2, {
+        rotation: 360,
+        ease: "sine.inOut",
+        duration: 1
+    }, 9.5);
+
+     // amps move to membrane
+     tl_plasmid.to(".amp", {
+        opacity: 1,
+        duration: 1,
+        ease: "sine.inOut",
+    }, 9.5)   
+
+    //10.5
+    // amps move to membrane
+    tl_plasmid.to("#amp1", {
+        x: "-=1",
+        y: "-=2",
+    rotation: 110,
+    duration: 1,
+    }, 10.5)
+    tl_plasmid.to("#amp2", {
+        x: "+=1",
+        y: "+=10",
+        rotation: -35,
+        duration: 1,
+    }, 10.5)
+    tl_plasmid.to("#amp3", {
+        x: "+=0",
+        y: "-=4",
+        rotation: -70,
+        duration: 1,
+    }, 10.5)
+    tl_plasmid.to("#amp4", {
+        x: "+=1",
+        y: "+=16",
+        rotation: 120,
+        duration: 1,
+    }, 10.5)
+    // 11.5 
+    // zoom out
+    // 12.5
+    // biofilm- alive fades out 
+    // amps move to membrane
+    tl_plasmid.to(biofilm_alive, {
+        opacity: 0,
+        duration: 1,
+        ease: "sine.inOut",
+    }, 12.5)   
+    //13
+    // biofilm dead fades in
+    tl_plasmid.to(biofilm_dead, {
+        opacity: 1,
+        duration: 1,
+        ease: "sine.inOut",
+    }, 13)   
 
 
 
     /* --------------------------------- Lung animation --------------------------------- */
 
-    const zoom_origin = "28% 45%"
+    const zoom_origin = "27% 45%"
+    const pin_container = getElement(".pin-container")
+    const scrollsource = getElement(".scrollsource")
 
     mm.add("(min-width: 1001px)", () => {
 
     //7
     //pin lung
-    tl_plasmid.from(lung, {
+    tl_plasmid.from(pin_container, {
         scrollTrigger: {
-            trigger: lung,
+            trigger: pin_container,
+            pinSpacing: true,
             pin: true,
             scrub: 1,
-            start: "center center",
+            start: "65% center",
             end: "+=3000px center",
-            anticipatePin: 0.5, // Add anticipatePin property
             markers: {
                 startColor: "blue",
                 endColor: "yellow"
-            }
+            },
         }
     })
-
-
 
     //zoom in
     tl_plasmid.to(lung, {
@@ -431,7 +538,14 @@ document.addEventListener('DOMContentLoaded', function() {
         scale: 1 * scale_factor, 
         ease: "none",
         duration: 1,
-    }, 9);
+    }, 7);
+    // zoom out
+    tl_plasmid.to(lung, {
+        transformOrigin: zoom_origin,
+        scale: 1, 
+        ease: "none",
+        duration: 1,
+    }, 11.5);
 
 })
 
@@ -509,13 +623,32 @@ document.addEventListener('DOMContentLoaded', function() {
             transformOrigin: "0% 0%" // Set transform origin to center (default)
         }, 0);
     }
+
+    // -------------------------- reverse rotation ------------------------------------
+    for (let index = 0; index < halfLength; index++) {
+        const element = bilipidElements2[index];
+        tl_plasmid.to(element, {
+            rotation: 0, // Reverse the rotation
+            duration: 1 // Duration of 0.22 seconds for each rotation
+        }, 8.5);
+    }
+
+    for (let index = halfLength; index < bilipidElements.length; index++) {
+        const element = bilipidElements2[index];
+        tl_plasmid.to(element, {
+            rotation: 0, // Reverse the rotation
+            duration: 1 // Duration of 0.22 seconds for each rotation
+        }, 8.5);
+    }
 })
+
+
 
 
     /* --------------------------------- Bacterium Lipid animation --------------------------------- */
 
-    fill_container_with_ClassInstances("bacterium_svg", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid_bacterium", "bilipid_bacterium", 100);
-    fill_container_with_ClassInstances("bacterium_svg", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid_bacterium2", "bilipid_bacterium2", 120);
+    fill_container_with_ClassInstances("bacterium_svg", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid_bacterium", "bilipid_bacterium", 75);
+    fill_container_with_ClassInstances("bacterium_svg", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid_bacterium2", "bilipid_bacterium2", 95);
 
     const bacterium_bilipids = document.querySelectorAll('.bilipid_bacterium'); // Select all the elements you want to distribute
     const bacterium_bilipids2 = document.querySelectorAll('.bilipid_bacterium2'); // Select all the elements you want to distribute
@@ -523,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const staggerDelay = 0
     const half_elements = bacterium_bilipids.length / 2
-    const lipids_that_need_to_move = 10
+    const lipids_that_need_to_move = 9
 
     // Distribute elements along the path with auto-rotation and centered alignment
     bacterium_bilipids.forEach((element, index) => {
@@ -556,6 +689,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0, // Adjust the duration as needed
         ease: "none", // Linear motion#
         opacity: 0, 
+        scale: 1 / scale_factor,
         },0);
     });
 
@@ -577,7 +711,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.8, // Adjust the duration as needed
         ease: "sine .out", // Linear motion
         delay: delay,
-        }, 9.8); 
+        }, 8.5); 
     }
     // Reverse staggered movement for the second animation
     for (let index = bacterium_bilipids.length; index > half_elements; index--) {
@@ -596,76 +730,31 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.8, // Adjust the duration as needed
         ease: "sine.out", // Linear motion
         delay: delay,
-        }, 9.8); 
+        }, 8.5); 
     }
 
-    //bacterium lipids 1
-    tl_plasmid.to(bacterium_bilipids, {
+    // Bacterium lipids 1
+    tl_plasmid.set(bacterium_bilipids, {
         opacity: 0,
-        duration: 0.1,
-      }, 11)
+    }, 9.5);
+    
     // Hide bacterium_bilipids and show bacterium_bilipids2
-    tl_plasmid.to(bacterium_bilipids, {
-            duration: 0,
-            onStart: () => gsap.set(bacterium_bilipids, { display: "none" }),
-    }, 11.1);
-    //bacterium lipids 2
-    tl_plasmid.to(bacterium_bilipids2, {
-        duration: 0.1,
-        onStart: () => gsap.set(bacterium_bilipids2, { display: "block" }),
-    }, 10.9);
-      tl_plasmid.to(bacterium_bilipids2, {
+    tl_plasmid.set(bacterium_bilipids, {
+        display: "none",
+    }, 9.6);
+    
+    // Bacterium lipids 2
+    tl_plasmid.set(bacterium_bilipids2, {
+        display: "block",
+    }, 9.4);
+    
+    tl_plasmid.set(bacterium_bilipids2, {
         opacity: 1,
-        duration: 0.1,
-      }, 11)
-
-
+    }, 9.5);
     }
 // Initialize elements and animations on page load
 initialize();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* tl_plasmid.to(lung, {
-        scale: 7,
-        transformOrigin: "27% 40%", 
-        duration: 0.5,
-    })
-
-    tl_plasmid.from(biofilm_alive, {
-        scrollTrigger: {
-            trigger: lung,
-            pin: true,
-            pinSpacing: true,
-            scrub: 2,
-            start: "center center",
-            end: "+=3000px center",
-            markers: {
-                startColor: "blue",
-                endColor: "yellow"
-            }
-        }
-    }) */
-
-
-
-
-
-
-
-
 
 
 
