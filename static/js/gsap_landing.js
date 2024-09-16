@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {   
+    const lungContainer = document.querySelector(".lung-container");
+
+    if (lungContainer) {
+        console.log("Lung found")
+        const rect = lungContainer.getBoundingClientRect();
+        const roundedWidth = Math.floor(rect.width) - 1;
+        const roundedHeight = Math.floor(rect.height) - 1;
+
+        lungContainer.style.width = `${roundedWidth}px`;
+        lungContainer.style.height = `${roundedHeight}px`;
+    }
     // Function to initialize elements and animations
     function initialize() {
 
@@ -163,6 +174,11 @@ document.addEventListener('DOMContentLoaded', function() {
         {x: anchor_liposome[3].x -5, y: anchor_liposome[4].y -45},
         {x: anchor_liposome[4].x -5, y: anchor_liposome[4].y -45},]
 
+    /* --------------------------------- Guide path --------------------------------- */
+
+    const guide1 = getElement(".guide1")
+
+
     /* ################################# Timeline ################################# */
 
     // enables matching animation to windowsize
@@ -307,42 +323,67 @@ document.addEventListener('DOMContentLoaded', function() {
     /* --------------------------------- Common path --------------------------------- */
     // guide element inside lung
     const guide = getElement(".lung1")
-    const scale_factor = 5
+    const scale_factor = 9
     //5
+    // Calculate the relative position of guide1 with respect to guide
+    const relativePosition = MotionPathPlugin.getRelativePosition(guide, guide1, [0, 5]); // no clue why 5 is fitting
+    // Animate the guide element to the position of guide1
     tl_plasmid.to(guide, {
-        x: 0,
-        y: 330,
+        x: relativePosition.x,
+        y: relativePosition.y,
         duration: 1,
         onUpdate: () => {
-        sync_move(plasmid, guide, [0.5, 0.5]);
-        sync_move(liposome, guide, {x: 158, y: 50 });
+            sync_move(plasmid, guide, [0.5, 0.5]);
+            sync_move(liposome, guide, { x: 158, y: 50 });
         }
-    },5)
+    }, 5);
     // shrink
     tl_plasmid.to(plasmid, {
-        scale: 1 / scale_factor,
-        duration: 2
+        scale: 1 / (scale_factor / 2),
+        duration: 1
     }, 5);
     
     tl_plasmid.to(liposome, {
-        scale: 1 / scale_factor,
-        duration: 2
+        scale: 1 / (scale_factor / 2),
+        duration: 1
     }, 5);
     //6
+    // set position for plasmid2 and liposome2
     tl_plasmid.to(guide, {
-        x: -170,
-        y: "+=75",
+        x: relativePosition.x,
+        y: relativePosition.y,
         duration: 1,
         onUpdate: () => {
-        sync_move(plasmid2, guide, [0.5, 0.5]);
-        sync_move(liposome2, guide, {x: 158, y: 50 });
+            sync_move(plasmid2, guide, [0.5, 0.5]);
+            sync_move(liposome2, guide, { x: 158, y: 50 });
         }
-    },6)
+    }, 6);
+    //liposome1 and plasmid1 fade out
+    tl_plasmid.to(plasmid, {
+        opacity: 0,
+        duration: 0,
+    }, 6);
+    
+    tl_plasmid.to(liposome, {
+        opacity: 0,
+        duration: 0,
+    }, 6);
+    //liposome2 and plasmid2 fade in
+    tl_plasmid.to(plasmid2, {
+        scale: 1 / (scale_factor / 2),
+        opacity: 1,
+        duration: 0,
+    }, 6);
+    tl_plasmid.to(liposome2, {
+        scale: 1 / (scale_factor / 2),
+        opacity: 1,
+        duration: 0,
+    }, 6);
+
+
     //7
     //grow
     tl_plasmid.to(plasmid2, {
-        opacity: 1,
-        scale: 1,
         duration: 1,
         onUpdate: () => {
         sync_move(plasmid2, guide, [0.5, 0.5]);
@@ -350,17 +391,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 7);
     
     tl_plasmid.to(liposome2, {
-        scale: 1,
         duration: 1,
         onUpdate: () => {
         sync_move(liposome2, guide, {x: 158, y: 50 });
         }
     }, 7);
-    
+
+
+
 
     /* --------------------------------- Lung animation --------------------------------- */
 
-    const zoom_origin = "15% 70%"
+    const zoom_origin = "28% 45%"
 
     mm.add("(min-width: 1001px)", () => {
 
@@ -373,6 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scrub: 1,
             start: "center center",
             end: "+=3000px center",
+            anticipatePin: 0.5, // Add anticipatePin property
             markers: {
                 startColor: "blue",
                 endColor: "yellow"
@@ -382,13 +425,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-/*     //zoom in
+    //zoom in
     tl_plasmid.to(lung, {
         transformOrigin: zoom_origin,
         scale: 1 * scale_factor, 
         ease: "none",
         duration: 1,
-    }, 7); */
+    }, 9);
 
 })
 
@@ -469,6 +512,113 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 
+    /* --------------------------------- Bacterium Lipid animation --------------------------------- */
+
+    fill_container_with_ClassInstances("bacterium_svg", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid_bacterium", "bilipid_bacterium", 100);
+    fill_container_with_ClassInstances("bacterium_svg", "https://static.igem.wiki/teams/5057/bilipid-b.svg", "bilipid_bacterium2", "bilipid_bacterium2", 120);
+
+    const bacterium_bilipids = document.querySelectorAll('.bilipid_bacterium'); // Select all the elements you want to distribute
+    const bacterium_bilipids2 = document.querySelectorAll('.bilipid_bacterium2'); // Select all the elements you want to distribute
+    const path = document.querySelector('.path_bacterium'); // Select the path
+
+    const staggerDelay = 0
+    const half_elements = bacterium_bilipids.length / 2
+    const lipids_that_need_to_move = 10
+
+    // Distribute elements along the path with auto-rotation and centered alignment
+    bacterium_bilipids.forEach((element, index) => {
+    tl_plasmid.to(element, {
+        motionPath: {
+        path: path,
+        align: path,
+        alignOrigin: [0, 0], // Center the element on the path
+        autoRotate: true,
+        start: index / bacterium_bilipids.length, // Distributes elements along the path
+        end: index / bacterium_bilipids.length // Adjusts end point
+        },
+        duration: 0.1, // Adjust the duration as needed
+        ease: "none", // Linear motion
+        scale: 1 / scale_factor,
+    },0);
+    });
+
+    // Distribute elements along the path with auto-rotation and centered alignment
+    bacterium_bilipids2.forEach((element, index) => {
+    tl_plasmid.to(element, {
+        motionPath: {
+            path: path,
+            align: path,
+            alignOrigin: [0, 0], // Center the element on the path
+            autoRotate: true,
+            start: index / bacterium_bilipids2.length, // Distributes elements along the path
+            end: index / bacterium_bilipids2.length // Adjusts end point
+        },
+        duration: 0, // Adjust the duration as needed
+        ease: "none", // Linear motion#
+        opacity: 0, 
+        },0);
+    });
+
+
+    //staggered movement
+    // Animate the first half of the elements
+    for (let index = 0; index < half_elements; index++) {
+    const element = bacterium_bilipids[index];
+    const delay = index * staggerDelay  
+    tl_plasmid.to(element, {
+        motionPath: {
+            path: path,
+            align: path,
+            alignOrigin: [0, 0], // Center the element on the path
+            autoRotate: true,
+            start: index / bacterium_bilipids.length, // Distributes elements along the path
+            end: (index + lipids_that_need_to_move)/ (bacterium_bilipids.length + lipids_that_need_to_move*2) // Adjusts end point
+        },
+        duration: 0.8, // Adjust the duration as needed
+        ease: "sine .out", // Linear motion
+        delay: delay,
+        }, 9.8); 
+    }
+    // Reverse staggered movement for the second animation
+    for (let index = bacterium_bilipids.length; index > half_elements; index--) {
+    const element = bacterium_bilipids[index];
+    const delay = (bacterium_bilipids.length-index) * staggerDelay 
+
+    tl_plasmid.to(element, {
+        motionPath: {
+            path: path,
+            align: path,
+            alignOrigin: [1, 1], // Center the element on the path
+            autoRotate: true,
+            start: index / bacterium_bilipids.length, // Distributes elements along the path
+            end: (index + lipids_that_need_to_move)/ (bacterium_bilipids.length + lipids_that_need_to_move*2) // Adjusts end point
+        },
+        duration: 0.8, // Adjust the duration as needed
+        ease: "sine.out", // Linear motion
+        delay: delay,
+        }, 9.8); 
+    }
+
+    //bacterium lipids 1
+    tl_plasmid.to(bacterium_bilipids, {
+        opacity: 0,
+        duration: 0.1,
+      }, 11)
+    // Hide bacterium_bilipids and show bacterium_bilipids2
+    tl_plasmid.to(bacterium_bilipids, {
+            duration: 0,
+            onStart: () => gsap.set(bacterium_bilipids, { display: "none" }),
+    }, 11.1);
+    //bacterium lipids 2
+    tl_plasmid.to(bacterium_bilipids2, {
+        duration: 0.1,
+        onStart: () => gsap.set(bacterium_bilipids2, { display: "block" }),
+    }, 10.9);
+      tl_plasmid.to(bacterium_bilipids2, {
+        opacity: 1,
+        duration: 0.1,
+      }, 11)
+
 
     }
 // Initialize elements and animations on page load
@@ -530,26 +680,27 @@ initialize();
 
 
 
-    // ############################################# LOADING SCREEN #########################################
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    function hideLoader(minDuration = 1500){
-        $('body').addClass('loading');
+// ############################################# LOADING SCREEN #########################################
+const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+function hideLoader(minDuration = 1500){
+    $('body').addClass('loading');
 
-        // Ensure the loader is displayed for at least the minimum duration
-        setTimeout(() => {
-            $('.page-loader').fadeOut('slow', function() {
-                $('body').removeClass('loading');
-                
-                // Calculate scrollbar width
-                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-                
-                // Add padding to the header to compensate for scrollbar
-                $('header').css('padding-right', scrollbarWidth + 'px');
-                
-                // Subtract margin to reposition the animation correctly after the scrollbar pops back in
-                setTimeout(() => {
-                    $('body').css('margin-right', -scrollbarWidth + 'px');
-                }, 10); // Adjust the delay as needed
-            });
-        }, minDuration);
-    }
+    // Ensure the loader is displayed for at least the minimum duration
+    setTimeout(() => {
+        $('.page-loader').fadeOut('slow', function() {
+            $('body').removeClass('loading');
+            
+            // Calculate scrollbar width
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            
+            // Add padding to the header to compensate for scrollbar
+            $('header').css('padding-right', scrollbarWidth + 'px');
+            
+            // Subtract margin to reposition the animation correctly after the scrollbar pops back in
+            setTimeout(() => {
+                $('body').css('margin-right', -scrollbarWidth + 'px');
+            }, 10); // Adjust the delay as needed
+        });
+    }, minDuration);
+}
+
