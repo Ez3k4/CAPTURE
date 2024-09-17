@@ -186,6 +186,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* ################################# Timeline ################################# */
 
+    // configuring animation for different screen sizes
+    const animation_end = DOM(".animation_end")
+
     // enables matching animation to windowsize
     const mm = gsap.matchMedia();
 
@@ -199,8 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
         //connect the timeline to scrolltrigger instead of duration in s
         scrollTrigger: {
             trigger: ".scrollsource", // selector or element 
-            start: "20% center", // [trigger]=animated element, [scroller]=viewport
-            end: "bottom center",
+            start: "28% center", // [trigger]=animated element, [scroller]=viewport
+            end:  "120% center",
             scrub: 1, // Add scrub to control the animation progress on scroll
             markers: true, // Add markers 
         },
@@ -372,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 6);
     //liposome2 and plasmid2 fade in
     tl_plasmid.to(plasmid2, {
-        scale: 1 / scale_factor,
+        scale: 1 / scale_factor ,
         opacity: 1,
         duration: 0,
     }, 6);
@@ -391,6 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const relativePosition2 = MotionPathPlugin.getRelativePosition(guide, guide2); // no clue why 5 is fitting
     // Animate the guide element to the position of guide2
     tl_plasmid.to(guide, {
+        scale: 1 / (scale_factor / 2),
         x: relativePosition2.x,
         y: relativePosition2.y,
         duration: 1,
@@ -416,6 +420,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 7);
     //8
+    //In infected areas, lipid vesicles specifically fuse with P. aeruginosa's cell membrane
+    tl_plasmid.to(".biofilm_text1", {
+        opacity: 1,
+        duration: 0.5,
+    }, 8);
+    tl_plasmid.to(".biofilm_text1", {
+        opacity: 0,
+        duration: 0.5,
+    }, 9);
+    //9.5
+    //The plasmid, carrying the AMP gene, enters the bacterium and integrates it into its genetic machinery
+    tl_plasmid.to(".biofilm_text2", {
+        opacity: 1,
+        duration: 0.5,
+    }, 9.5);
+    tl_plasmid.to(".biofilm_text2", {
+        opacity: 0,
+        duration: 0.5,
+    }, 10.5);
+    //12
+    //AMPs are produced constitutively from a <em>Pseudomonas</em>-specific promoter, ensuring targeted and continuous expression
+    tl_plasmid.to(".biofilm_text3", {
+        opacity: 1,
+        duration: 0.5,
+    }, 10.5);
+    tl_plasmid.to(".biofilm_text3", {
+        opacity: 0,
+        duration: 0.5,
+    }, 11.5);
+    //The produced AMPs disrupt the bacterial membrane by creating pores or destabilizing its structure
+    tl_plasmid.to(".biofilm_text4", {
+        opacity: 1,
+        duration: 0.5,
+    }, 11.5);
+    tl_plasmid.to(".biofilm_text4", {
+        opacity: 0,
+        duration: 0.5,
+    }, 12.5);
+
+
     const relativePosition3 = MotionPathPlugin.getRelativePosition(guide, guide3); // no clue why 5 is fitting
     // Animate the guide element to the position of guide2
     tl_plasmid.to(guide, {
@@ -448,45 +492,59 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0
     }, 9.5);
 
+    // Grow the plasmid
+    tl_plasmid.to(plasmid2, {
+        scale: (1/scale_factor)*1.5, // Scale up to 1.5 times its original size
+        ease: "sine.inOut",
+        duration: 0.5
+    }, 9.5); // Start after the rotation
+
+    // Shrink the plasmid back to its original size
+    tl_plasmid.to(plasmid2, {
+        scale: 1/scale_factor, // Scale back to its original size
+        ease: "sine.inOut",
+        duration: 0.5
+    }, 10); // Start after the grow animation
+
     tl_plasmid.to(plasmid2, {
         rotation: 360,
         ease: "sine.inOut",
         duration: 1
-    }, 9.5);
+    }, 10.5);
 
-     // amps move to membrane
+     // amps fade in
      tl_plasmid.to(".amp", {
         opacity: 1,
         duration: 1,
         ease: "sine.inOut",
-    }, 9.5)   
+    }, 10.5)   
 
-    //10.5
+    //11.5
     // amps move to membrane
     tl_plasmid.to("#amp1", {
         x: "-=1",
         y: "-=2",
     rotation: 110,
     duration: 1,
-    }, 10.5)
+    }, 11.5)
     tl_plasmid.to("#amp2", {
         x: "+=1",
         y: "+=10",
         rotation: -35,
         duration: 1,
-    }, 10.5)
+    }, 11.5)
     tl_plasmid.to("#amp3", {
         x: "+=0",
         y: "-=4",
         rotation: -70,
         duration: 1,
-    }, 10.5)
+    }, 11.5)
     tl_plasmid.to("#amp4", {
         x: "+=1",
         y: "+=16",
         rotation: 120,
         duration: 1,
-    }, 10.5)
+    }, 11.5)
     // 11.5 
     // zoom out
     // 12.5
@@ -496,14 +554,19 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0,
         duration: 1,
         ease: "sine.inOut",
-    }, 12.5)   
+    }, 13.5)   
+    tl_plasmid.to(plasmid2, {
+        opacity: 0,
+        duration: 1,
+        ease: "sine.inOut",
+    }, 13.5)   
     //13
     // biofilm dead fades in
     tl_plasmid.to(biofilm_dead, {
         opacity: 1,
         duration: 1,
         ease: "sine.inOut",
-    }, 13)   
+    }, 14)   
 
 
 
@@ -524,7 +587,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pin: true,
             scrub: 1,
             start: "65% center",
-            end: "+=2300px center",
+            end: "+=3000px center",
             markers: {
                 startColor: "blue",
                 endColor: "yellow"
@@ -539,13 +602,20 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: "none",
         duration: 1,
     }, 7);
+
+    // Make biofilm-alive semi-transparent
+    gsap.to(".biofilm-alive img", {
+        opacity: 0.5,
+        duration: 1
+    },7);
+    
     // zoom out
     tl_plasmid.to(lung, {
         transformOrigin: zoom_origin,
         scale: 1, 
         ease: "none",
         duration: 1,
-    }, 11.5);
+    }, 12.5);
 
 })
 
