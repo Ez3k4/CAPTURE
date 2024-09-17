@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pin: true,
             scrub: 1,
             start: "65% center",
-            end: "+=3000px center",
+            end: "+=2300px center",
             markers: {
                 startColor: "blue",
                 endColor: "yellow"

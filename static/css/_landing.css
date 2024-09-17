@@ -14,8 +14,8 @@
     flex-direction: column;
     margin: 0;
     width: 60%;
-    padding: 0;
-}
+/*     padding: 0;
+ */}
   
 .container {
     display: flex;
@@ -24,24 +24,24 @@
     flex-direction: row;
     width: 100%;
     margin: 0;
-    padding: 0;
+/*     padding: 0; */
+}
+
+.pin-placer {
+    display: flex;
+    justify-content: center;
 }
 
 .pin-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: none 60rem;
     width: 60rem;
+    min-width: 60rem;
     height: auto;
 /*     position: sticky;
     top: -300px; 
     z-index: 80;  */
-}
-
-.lung-placeholder {
-    height: 10vh;
-    background-color: palegoldenrod;
 }
 
 /* ############################## Path elements ############################## */
@@ -78,11 +78,11 @@
     position: absolute;
     top: 5%;
     left: 49%;
-    background-color: rgb(255, 0, 0); 
+/*     background-color: rgb(255, 0, 0);  */
 }
 
 .guidepoint {
-    background-color: rgb(255, 0, 0);
+/*     background-color: rgb(255, 0, 0); */
     width: 1px !important;	
     height: 1px !important;
     z-index: 100;
@@ -176,7 +176,7 @@
 }
 
     .path1 {
-        stroke: rgb(69, 241, 155);
+/*         stroke: rgb(69, 241, 155); */
         z-index: 100;
         visibility: visible;
         position: absolute;
@@ -212,7 +212,7 @@
 }
 
     .path2 {
-        stroke: rgb(69, 241, 155);
+/*         stroke: rgb(69, 241, 155); */
         z-index: 100;
         visibility: visible;
         position: absolute;
